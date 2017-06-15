@@ -300,7 +300,6 @@ int GibbsSampler::sample_sentence(SLDADoc& doc, Sentence& sent) {
     float t_sum_beta_sum = 0.0;
     float wt_beta = 0.0;
     // 为了保证数值计算的稳定，以下实现为SentenceLDA的采样近似实现
-    // TODO: 添加近似方法相关论文
     for (int t = 0; t < num_topics; ++t) {
         dt_alpha = doc.topic_sum(t) + _model->alpha();
         t_sum_beta_sum = _model->topic_sum(t) + _model->beta_sum();

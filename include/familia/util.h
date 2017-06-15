@@ -24,9 +24,6 @@ inline std::default_random_engine& local_random_engine() {
         std::default_random_engine engine;
         engine_wrapper_t() {
             static std::atomic<unsigned long> x(0);
-            // TODO: change to random seed
-            // std::seed_seq sseq = {x++, x++, x++, (unsigned long)time(NULL)};
-            // fix seed
             std::seed_seq sseq = {x++, x++, x++, x++};
             engine.seed(sseq);
         }
