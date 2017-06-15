@@ -6,9 +6,9 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
 第三方依赖包括gflags，glogs，protobuf, 要求编译器支持C++11, 如 g++ >= 4.8 
 默认情况下会自动获取依赖并安装。
     
-    sh build.sh # 包含了获取并安装第三方依赖
+    sh build.sh # 包含了获取并安装第三方依赖的过程
 
-## 编译注意事项
+## 运行注意事项
 *   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
 
     export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
