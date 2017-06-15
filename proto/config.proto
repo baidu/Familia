@@ -1,0 +1,27 @@
+package familia;
+
+// 模型类型
+enum ModelType {
+    LDA = 0; // Latent Dirichlet Allocation
+    SLDA = 1; // Sentence-LDA
+}
+
+message ModelConfig {
+    // 模型类型
+    optional ModelType type = 1 [default = LDA];
+
+    // 主题数
+    optional int32 num_topics = 2 [default = 100];
+
+    // 主题模型超参alpha
+    optional float alpha = 3 [default = 0.1];
+
+    // 主题模型超参beta
+    optional float beta = 4 [default = 0.01];
+
+    // 主题模型word topic矩阵文件名
+    optional string word_topic_file = 6 [default = "word_topic.model"];
+
+    // 词表文件名
+    optional string vocab_file = 7 [default = "vocab_info.txt"];
+}
