@@ -121,6 +121,7 @@ public:
     // no copying allowed
     GibbsSampler(const GibbsSampler&) = delete;
     GibbsSampler& operator=(const GibbsSampler&) = delete;
+
 private:
     int sample_token(LDADoc& doc, Token& token);
 

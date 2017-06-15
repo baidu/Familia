@@ -82,7 +82,6 @@ void TopicalWordEmbedding::nearest_words(const string& word,
     Embedding& target_word_emb = word_emb(word);
     int num_k = items.size();
     for (const auto& it : _word_emb) {
-        // 如果与目标词相同，跳过
         if (it.first == word) {
             continue;
         }
