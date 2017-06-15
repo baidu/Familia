@@ -48,7 +48,7 @@ int TopicalWordEmbedding::load_emb(const string& emb_file) {
     char term[MAX_TOKEN_LENGTH];
     Embedding emb(_emb_size, 0);
     int total_num = _vocab_size + _num_topics;
-    // LTE模型存储格式：
+    // TWE模型存储格式：
     // 单词明文 \空格 二进制embedding \n
     // 0~vocab_size-1行为word embedding.......
     // _topic_#ID \空格 二进制embedding \n
