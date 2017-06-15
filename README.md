@@ -4,8 +4,7 @@
 第三方依赖包括gflags，glogs，protobuf, 要求编译器支持C++11, 如 g++ >= 4.8 
 默认情况下会自动获取依赖并安装。
     
-    git clone ssh://g@gitlab.baidu.com:8022/chenzeyu01/familia.git
-    sh build.sh # 包含了拉取并安装第三方依赖
+    sh build.sh # 包含了获取并安装第三方依赖
 
 # 模型下载
 
