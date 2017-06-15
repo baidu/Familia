@@ -1,23 +1,17 @@
 # Familia
 
-Familia 开源项目包含主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型（LDA、SentenceLDA、Topical Word Embedding)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等任务的调研和落地。考虑到主题模型训练成本较大的问题，我们会陆续开放基于工业级语料训练的多个领域的主题模型，助力主题模型技术在垂直领域的应用和学术界的科学研究。
+Familia 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型（LDA、SentenceLDA、Topical Word Embedding)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等任务的调研和落地。考虑到主题模型训练成本较大的问题，我们会陆续开放基于工业级语料训练的多个领域的主题模型，助力主题模型技术在垂直领域的应用和学术界的科学研究。
 
 # 代码编译
-第三方依赖包括gflags，glogs，protobuf, 要求编译器支持C++11, 如 g++ >= 4.8 
-默认情况下会自动获取依赖并安装。
+第三方依赖包括gflags-2.0，glogs-0.3.3，protobuf-2.5.0, 同时要求编译器支持C++11, g++ >= 4.8 
+默认情况下执行以下脚本会自动获取依赖并安装。
     
     sh build.sh # 包含了获取并安装第三方依赖的过程
-
-## 运行注意事项
-*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
-
-    export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
 
 # 模型下载
 
     cd model
     sh download_model.sh
-
 
 # 运行DEMO
 ## 文档主题推断
@@ -54,7 +48,8 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
     Jensen Shannon Divergence = 1.13397    
     Hellinger Distance = 0.889616
 
-## 邻近词查询
+## 模型内容展现
+### 邻近词查询
 
     sh run_word_distance_demo.sh # 运行邻近词查询的demo
 
@@ -79,7 +74,7 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
     --work_dir="./model/news/" --conf_file="lda.conf" --top_k=10 # 选用新闻LDA主题模型,展现距离最近的前10个词
     --work_dir="./model/news/" --conf_file="slda.conf" --top_k=20 # 选用新闻SentenceLDA主题模型,展现距离最近的前20个词
 
-## 主题词查询
+### 主题词查询
 在TWE模型中，通过计算主题向量与词向量的cosine相似度可以衡量主题与每个词的相关性，可以每个主题下最邻近的K个词。同理，在LDA模型中，也可以得到每个主题下每个词的产生概率。主题词查询demo展示这两个模型的主题词结果。
 
     sh run_topic_word_demo.sh # 运行主题词查询的demo
@@ -88,7 +83,7 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
 
     请输入主题编号(0-10000):    105
     TWE result            LDA result
-    ------------------------------------
+    ----------------------------------
     卫生检疫              国家
     检验检疫              出入境
     上海口岸              外籍
@@ -106,5 +101,9 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
     --work_dir="./model/news/" --emb_file="news_twe_lda.model" --topic_words_file="topic_words.lda.txt" # 选用新闻LDA主题模型训练得到TWE模型以及对应的主题展现结果
 
 # 注意事项
-* 代码中内置简易的FMM分词工具，只针对主题模型中出现的词表进行正向匹配。该工具仅用于Demo示例使用，若对分词和语义准确度有更高要求，建议使用其他*开源或者商用分词工具*, 并使用自定义词表的功能导入主题模型中的词表。
+*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
+
+    export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
+
+* 代码中内置简易的FMM分词工具，只针对主题模型中出现的词表进行正向匹配。该工具仅用于Demo示例使用，若对分词和语义准确度有更高要求，建议使用其他开源或者商用分词工具, 并使用自定义词表的功能导入主题模型中的词表。
 
