@@ -8,16 +8,15 @@ Familia 开源项目包含主题推断工具、语义匹配计算工具以及基
     
     sh build.sh # 包含了获取并安装第三方依赖
 
+## 编译注意事项
+*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
+
+    export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
+
 # 模型下载
 
     cd model
     sh download_model.sh
-
-# 注意事项
-*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
-
-
-    export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
 
 
 # 运行DEMO
