@@ -1,0 +1,13 @@
+*.DS_Store
+build/
+
+.vscode
+.idea
+.project
+.cproject
+.pydevproject
+.settings/
+.test_env/
+third_party/
+
+*~
