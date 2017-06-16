@@ -53,7 +53,7 @@ public:
         return _tokens[index];
     }
 
-    // 对文档中第index位单词的主题置为new_topic, 并更新相应的文档主题分布
+    // 对文档中第index个单词的主题置为new_topic, 并更新相应的文档主题分布
     void set_topic(int index, int new_topic);
 
     // 返回文档中词的数量
