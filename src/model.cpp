@@ -15,7 +15,7 @@ TopicModel::TopicModel(const std::string& work_dir, const ModelConfig& config) {
     _beta = config.beta();
     _alpha = config.alpha();
     _alpha_sum = _alpha * _num_topics;
-    _topic_sum = std::vector<size_t>(_num_topics, 0);
+    _topic_sum = std::vector<uint64_t>(_num_topics, 0);
     _type = config.type();
 
     // 加载模型
