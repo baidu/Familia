@@ -69,7 +69,7 @@ LDA模型内容展现的结果如下所示：
 在TWE中，我们还可以通过计算主题向量与词向量的cosine相似度可以衡量主题与每个词的相关性。TWE模型内容展现的结果如下所示：
 
     请输入主题编号(0-10000):    105
-    Embedding result          Multinomial result
+    Embedding Result          Multinomial Result
     ----------------------------------
     卫生检疫              国家
     检验检疫              出入境
