@@ -100,7 +100,7 @@ private:
     // 存放先验参数各个主题下概率之和(word-proposal先验参数部分)
     double _beta_prior_sum;
 
-    // metroplis-hastings steps, 默认值为2
+    // Metropolis-Hastings steps, 默认值为2
     static constexpr int _mh_steps = 2;
 };
 
