@@ -33,7 +33,6 @@ public:
 // 基于Metropolis-Hastings的采样器实现，包含LDA和SentenceLDA两个模型的实现
 class MHSampler : public Sampler {
 public:
-    // 默认MH-Steps为2
     MHSampler(std::shared_ptr<TopicModel> model) : _model(model) {
         construct_alias_table();
     }
@@ -114,7 +113,7 @@ public:
     // 对文档输入进行LDA主题采样，主题结果保存在doc中
     void sample_doc(LDADoc& doc) override;
 
-    // 使用Sentence-LDA模型对文档每个句子进行采样, 结果保存在doc中
+    // 使用SentenceLDA模型对文档每个句子进行采样, 结果保存在doc中
     // 其中SentenceLDA采样算法考虑了数值计算的精度问题，对公式进行了采样
     void sample_doc(SLDADoc& doc) override;
 
