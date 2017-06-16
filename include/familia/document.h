@@ -13,7 +13,7 @@
 
 namespace familia {
 
-// 主题的基本数据结构，包含id以及对应的主题概率
+// 主题的基本数据结构，包含id以及对应的概率
 struct Topic {
     int tid; // topic id
     double prob; // topic probability
@@ -72,7 +72,7 @@ public:
     // 返回稠密格式的文档主题分布, 考虑了先验参数的结果
     void dense_topic_dist(std::vector<float>& dense_dist) const;
 
-    // 对每轮采样结果进行累积, 以得到一个逼近真实结果更平滑的分布
+    // 对每轮采样结果进行累积, 以得到一个更逼近真实后验的分布
     void accumulate_topic_sum();
 
 protected:
@@ -97,7 +97,7 @@ public:
     // 新增句子
     void add_sentence(const Sentence& sent);
 
-    // 对文档中第index位句子的主题置为new_topic, 并更新相应的文档主题分布
+    // 对文档中第index个句子的主题置为new_topic, 并更新相应的文档主题分布
     void set_topic(int index, int new_topic);
 
     // 返回文档句子数量
