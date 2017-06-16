@@ -46,8 +46,8 @@ public:
     // 打印结果
     void print_result(const vector<WordAndDis>& items,
                       const vector<string>& words) {
-        cout << "TWE result                      LDA result" << endl;
-        cout << "---------------------------------------------" << endl;
+        cout << "Embedding Result              Multinomial Result" << endl;
+        cout << "------------------------------------------------" << endl;
         for (int i = 0; i < _top_k; i++) {
              cout << std::left << std::setw(30) << items[i].word << "\t\t" << words[i] << endl;
         }
