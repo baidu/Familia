@@ -7,6 +7,8 @@
 #ifndef FAMILIA_VOCAB_H
 #define FAMILIA_VOCAB_H
 
+#include <iostream>
+#include <string>
 #include <unordered_map>
 
 namespace familia {
