@@ -50,7 +50,7 @@ int TopicalWordEmbedding::load_emb(const string& emb_file) {
     int total_num = _vocab_size + _num_topics;
     // TWE模型存储格式：
     // 单词明文 \空格 二进制embedding \n
-    // 0~vocab_size-1行为word embedding.......
+    // 0~vocab_size-1行为word embedding...
     // _topic_#ID \空格 二进制embedding \n
     // 随后num_topics行为topic embedding
     for (int i = 0; i < total_num; ++i) {

@@ -15,6 +15,7 @@ namespace familia {
 // -------------LDA Begin---------------
 void LDADoc::init(int num_topics) {
     _num_topics = num_topics;
+    _num_accum = 0; // 清空采样累积次数
     _tokens.clear();
     _topic_sum.resize(_num_topics, 0);
     _accum_topic_sum.resize(_num_topics, 0);
@@ -65,13 +66,13 @@ void LDADoc::dense_topic_dist(vector<float>& dense_dist) const {
     dense_dist.resize(_num_topics, 0.0);
     size_t sum = 0;
     for (int i = 0; i < _num_topics; ++i) {
-        sum += _accum_topic_sum[i];
+        sum += _accum_topic_sum[i] / _num_accum;
     }
     if (sum == 0) {
         return; // 返回0向量
     }
     for (int i = 0; i < _num_topics; ++i) {
-        dense_dist[i] = _accum_topic_sum[i] * 1.0 / sum;
+        dense_dist[i] = (_accum_topic_sum[i] / _num_accum + _alpha) / (sum + _alpha * _num_topics);
     }
 }
 
@@ -79,6 +80,7 @@ void LDADoc::accumulate_topic_sum() {
     for (int i = 0; i < _num_topics; ++i) {
         _accum_topic_sum[i] += _topic_sum[i];
     }
+    _num_accum += 1;
 }
 // -------------LDA End---------------
 

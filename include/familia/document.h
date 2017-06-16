@@ -49,12 +49,17 @@ public:
     // 添加新的单词
     void add_token(const Token& token);
 
-    Token& token(size_t index) {
+    inline Token& token(size_t index) {
         return _tokens[index];
     }
 
     // 对文档中第index位单词的主题置为new_topic, 并更新相应的文档主题分布
     void set_topic(int index, int new_topic);
+
+    // 配置文档先验参数alpha
+    inline void set_alpha(float alpha) {
+        _alpha = alpha;
+    }
 
     // 返回文档中词的数量
     inline size_t size() const {
@@ -78,6 +83,10 @@ public:
 protected:
     // 主题数
     int _num_topics;
+    // 累积的采样轮数
+    int _num_accum;
+    // 文档先验参数alpha
+    float _alpha;
     // inference 结果存储结构
     std::vector<Token> _tokens;
     // 文档在一轮采样中的topic sum

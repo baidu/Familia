@@ -35,6 +35,7 @@ InferenceEngine::InferenceEngine(const std::string& work_dir,
 int InferenceEngine::infer(const std::vector<std::string>& input, LDADoc& doc) {
     fix_random_seed(); // 固定随机数种子, 保证同样输入下推断的的主题分布稳定
     doc.init(_model->num_topics());
+    doc.set_alpha(_model->alpha());
     for (const auto& token : input) {
         int id = _model->term_id(token);
         if (id != OOV) {
@@ -51,6 +52,7 @@ int InferenceEngine::infer(const std::vector<std::string>& input, LDADoc& doc) {
 int InferenceEngine::infer(const std::vector<std::vector<std::string>>& input, SLDADoc& doc) {
     fix_random_seed(); // 固定随机数种子, 保证同样输入下推断的的主题分布稳定
     doc.init(_model->num_topics());
+    doc.set_alpha(_model->alpha());
     std::vector<int> words;
     int init_topic;
     for (const auto& sent : input) {

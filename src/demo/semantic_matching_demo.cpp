@@ -59,7 +59,7 @@ public:
                                                                       _engine.get_model());
         float twe_sim = SemanticMatching::twe_based_similarity(q_tokens, doc_topic_dist, _twe);
 
-        cout << "LDA sim = " << lda_sim << "\t" 
+        cout << "LDA sim = " << lda_sim << endl
              << "TWE sim = " << twe_sim << endl;
     }
 
