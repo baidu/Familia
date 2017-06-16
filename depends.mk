@@ -29,8 +29,8 @@ gflags: | ${GFLAGS}
 # glog
 GLOGS = ${DEPS_PATH}/include/glog/logging.h
 ${GLOGS}:
-	$(eval FILE=glog-0.3.3.tar.gz)
-	$(eval DIR=glog-0.3.3)
+	$(eval FILE=glog-0.3.4.tar.gz)
+	$(eval DIR=glog-0.3.4)
 	rm -rf $(FILE) $(DIR)
 	$(WGET) $(URL)/$(FILE)  && tar -zxf $(FILE)
 	cd $(DIR) && export CFLAGS=-fPIC && export CXXFLAGS=-fPIC && ./configure -prefix=$(DEPS_PATH) --with-gflags=$(DEPS_PATH) && $(MAKE) && $(MAKE) install
