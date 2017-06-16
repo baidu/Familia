@@ -52,7 +52,7 @@ public:
         LDADoc doc;
         _engine.infer(c_tokens, doc);
         vector<Topic> doc_topic_dist;
-        doc.topic_dist(doc_topic_dist);
+        doc.sparse_topic_dist(doc_topic_dist);
         
         float lda_sim = SemanticMatching::likelihood_based_similarity(q_tokens, 
                                                                       doc_topic_dist, 

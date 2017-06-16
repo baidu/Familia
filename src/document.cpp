@@ -40,7 +40,7 @@ void LDADoc::set_topic(int index, int new_topic) {
     _topic_sum[new_topic]++;
 }
 
-void LDADoc::topic_dist(vector<Topic>& topic_dist, bool sort) const {
+void LDADoc::sparse_topic_dist(vector<Topic>& topic_dist, bool sort) const {
     topic_dist.clear();
     size_t sum = 0;
     for (int i = 0; i < _num_topics; ++i) {

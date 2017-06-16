@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
             LDADoc doc;
             engine.infer(input, doc);
             vector<Topic> topics;
-            doc.topic_dist(topics);
+            doc.sparse_topic_dist(topics);
             print_doc_topic_dist(topics);
         } else if (engine.model_type() == ModelType::SLDA) {
             vector<string> sent;
@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
             SLDADoc doc;
             engine.infer(sentences, doc);
             vector<Topic> topics;
-            doc.topic_dist(topics);
+            doc.sparse_topic_dist(topics);
             print_doc_topic_dist(topics);
             sentences.clear();
         }

@@ -72,7 +72,7 @@ public:
 
     // 返回稀疏格式的文档主题分布, 默认按照主题概率从大到小的排序
     // NOTE: 这一接口返回结果为了稀疏化，忽略了先验参数的作用
-    void topic_dist(std::vector<Topic>& topic_dist, bool sort = true) const;
+    void sparse_topic_dist(std::vector<Topic>& topic_dist, bool sort = true) const;
 
     // 返回稠密格式的文档主题分布, 考虑了先验参数的结果
     void dense_topic_dist(std::vector<float>& dense_dist) const;

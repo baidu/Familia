@@ -97,7 +97,7 @@ private:
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./topic_distance_demo --work_dir=\"PATH/TO/MODEL\" ") +
+    string usage = string("Usage: ./topic_words_demo --work_dir=\"PATH/TO/MODEL\" ") +
                    string("--emb_file=\"webpage_twe_lda.model\" ") +
                    string("--topic_words_file=\"topic_words.txt\" ");
     google::SetUsageMessage(usage);
