@@ -107,10 +107,9 @@ LDA模型内容展现的结果如下所示：
     五人制            0.784913
     足球新闻          0.783203
 
-其中，每一行为一个词，数字表示该词与输入词的cosine距离，按照从大到小的顺序排序。可通过更改脚本中--work_dir和--conf_file的配置选择其他模型，--top_k配置展现词的个数，如
+其中，每一行为一个词，数字表示该词与输入词的cosine距离，按照从大到小的顺序排序。可通过更改脚本中--work_dir配置选择其他模型，--emb_file配置选择对应的词向量模型文件，--top_k配置展现词的个数，如
 
-    --work_dir="./model/news/" --conf_file="lda.conf" --top_k=10 # 选用新闻LDA主题模型,展现距离最近的前10个词
-    --work_dir="./model/news/" --conf_file="slda.conf" --top_k=20 # 选用新闻SentenceLDA主题模型,展现距离最近的前20个词
+    ./word_distance_demo --work_dir="./model/news" --emb_file="news_twe_lda.model" --top_k=20
 
 # 注意事项
 *   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。

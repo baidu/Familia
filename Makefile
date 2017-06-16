@@ -19,8 +19,7 @@ CXXFLAGS=-pipe \
   		 -fno-omit-frame-pointer \
   		 -fpermissive \
   		 -O3 \
-  		 -ffast-math \
-  		 -funroll-all-loops
+  		 -ffast-math
 
 INCPATH=-I./include/ \
 		-I./include/familia \
@@ -32,10 +31,10 @@ LDFLAGS_SO = -L$(DEPS_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
 all: familia
 	@echo $(SOURCES)
 	@echo $(OBJS)
-	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/inference_demo.o -Xlinker "-("  $(LDFLAGS_SO)  -Xlinker "-)" -o inference_demo
-	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/semantic_matching_demo.o -Xlinker "-("  $(LDFLAGS_SO)  -Xlinker "-)" -o semantic_matching_demo
-	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/word_distance_demo.o -Xlinker "-("  $(LDFLAGS_SO)  -Xlinker "-)" -o word_distance_demo
-	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/topic_word_demo.o -Xlinker "-("  $(LDFLAGS_SO)  -Xlinker "-)" -o topic_word_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/inference_demo.o  $(LDFLAGS_SO) -o inference_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/semantic_matching_demo.o $(LDFLAGS_SO)  -o semantic_matching_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/word_distance_demo.o $(LDFLAGS_SO) -o word_distance_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/topic_word_demo.o $(LDFLAGS_SO) -o topic_word_demo
 
 include depends.mk
 
