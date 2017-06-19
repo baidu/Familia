@@ -18,6 +18,7 @@ using std::vector;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::unordered_map;
 
 DEFINE_string(vocabulary_path, "./", "the path of the vocabulary file");
 DEFINE_string(item_topic_table_path, "./", "the path of the item_topic_table file");
@@ -40,42 +41,48 @@ struct WordCountCmpGreater {
     }
 } word_count_cmp_greater;
 
+// 加载词典信息
 void load_vocabulary(
-    const std::string& vocabulary_path,
-    std::unordered_map<int32_t, std::string>& vocabulary) {
+    const string& vocabulary_path,
+    unordered_map<int32_t, string>& vocabulary) {
     std::ifstream infile(vocabulary_path);
-    std::string line;
+    string line;
 
     while(std::getline(infile, line)) {
-        std::vector<std::string> items;
+        // 词典每行格式: factor_name term word_id tf df
+        vector<string> items;
         split(items, line, '\t');
+        // 需要保证至少有前三列
         CHECK_GE(items.size(), 3);
-        std::string word = items[1];
-        std::string id = items[2];
+        string word = items[1];
+        string id = items[2];
+        // 加入词典
         vocabulary.insert({std::stoi(id), word});
     }
     infile.close();
 }
 
+// 加载模型信息
 void load_item_topic_table(
-    const std::string& item_topic_table_path,
-    std::vector<int64_t>& topic_sum_table,
-    std::vector<std::vector<WordCount> >& topic_words) {
+    const string& item_topic_table_path,
+    vector<int64_t>& topic_sum_table,
+    vector<vector<WordCount> >& topic_words) {
     std::ifstream infile(item_topic_table_path);
-    std::string line;
+    string line;
 
     while(std::getline(infile, line)) {
-        std::vector<std::string> items;
+        vector<string> items;
         split(items, line, ' ');
         CHECK_GE(items.size(), 2);
 
         int32_t word_id = std::stoi(items[0]);
         for (size_t i = 1; i < items.size(); i++) {
-            std::vector<std::string> temps;
+            vector<string> temps;
             split(temps, items[i], ':');
             CHECK_EQ(temps.size(), 2);
             int32_t topic_index = std::stoi(temps[0]);
             int32_t count = std::stoi(temps[1]);
+            // 统计每个主题下词的总数
             topic_sum_table[topic_index] += count;
             WordCount current_word_count(word_id, count);
             topic_words[topic_index].push_back(current_word_count);
@@ -89,8 +96,8 @@ class ShowTopicDemo {
 public:
     ShowTopicDemo(
         int32_t num_topics,
-        const std::string& vocabulary_path,
-        const std::string& item_topic_table_path) {
+        const string& vocabulary_path,
+        const string& item_topic_table_path) {
         _num_topics = num_topics;
         _topic_sum_table.resize(_num_topics);
         _topic_words.resize(_num_topics);
@@ -107,25 +114,25 @@ public:
 
     // 打印指定主题下的前k个词
     void show_topics(int topic_id, int k) {
-        std::cout << "==========================================================" << std::endl;
+        cout << "==========================================================" << endl;
         if (topic_id >= 0 && topic_id < _num_topics) {
             if (k > (int)_topic_words[topic_id].size()) {
                 k = _topic_words[topic_id].size();
             }
             for (int32_t i = 0; i < k; i++) {
-                std::cout << _vocabulary[_topic_words[topic_id][i].word_id] << "\t"
+                cout << _vocabulary[_topic_words[topic_id][i].word_id] << "\t"
                     << (float)(_topic_words[topic_id][i].count) / (_topic_sum_table[topic_id] + EPS)
-                    << std::endl;
+                    << endl;
             }
         } else {
-            cout << topic_id << " is illegal" << std::endl;
+            cout << topic_id << " is illegal" << endl;
         }
     }
 private:
     int32_t _num_topics;
-    std::vector<int64_t> _topic_sum_table;
-    std::unordered_map<int32_t, std::string> _vocabulary;
-    std::vector<std::vector<WordCount> > _topic_words;
+    vector<int64_t> _topic_sum_table;
+    unordered_map<int32_t, string> _vocabulary;
+    vector<vector<WordCount> > _topic_words;
 };
 } // namespace familia
 
@@ -143,7 +150,7 @@ int main(int argc, char* argv[]) {
             FLAGS_vocabulary_path,
             FLAGS_item_topic_table_path);
 
-    std::string topic_index;
+    string topic_index;
     while (true) {
         cout << "请输入主题ID:\t";
         getline(cin, topic_index);
