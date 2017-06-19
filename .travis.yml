@@ -1,0 +1,19 @@
+language: cpp
+compiler:
+    gcc
+
+matrix:
+  include:
+    # works on Precise and Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.8
+      env:
+         - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
+
+scripts:
+	mkdir -p third_party && make deps && make clean && make -j4
