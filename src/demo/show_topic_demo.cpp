@@ -23,7 +23,7 @@ using std::unordered_map;
 DEFINE_string(vocabulary_path, "./", "the path of the vocabulary file");
 DEFINE_string(item_topic_table_path, "./", "the path of the item_topic_table file");
 DEFINE_int32(top_k, 20, "the nearest k words in a topic");
-DEFINE_int32(topic_num, 2000, "the number of the topic");
+DEFINE_int32(num_topics, 2000, "the number of the topic");
 
 const double EPS = 1e-8;
 
@@ -114,7 +114,7 @@ public:
 
     // 打印指定主题下的前k个词
     void show_topics(int topic_id, int k) {
-        cout << "==========================================================" << endl;
+        cout << "--------------------------------------------" << endl;
         if (topic_id >= 0 && topic_id < _num_topics) {
             if (k > (int)_topic_words[topic_id].size()) {
                 k = _topic_words[topic_id].size();
@@ -146,13 +146,13 @@ int main(int argc, char* argv[]) {
     google::SetUsageMessage(usage);
     google::ParseCommandLineFlags(&argc, &argv, true);
 
-    familia::ShowTopicDemo st_demo(FLAGS_topic_num,
+    familia::ShowTopicDemo st_demo(FLAGS_num_topics,
             FLAGS_vocabulary_path,
             FLAGS_item_topic_table_path);
 
     string topic_index;
     while (true) {
-        cout << "请输入主题ID:\t";
+        cout << "请输入主题编号(0-" << FLAGS_num_topics - 1 << "):\t";
         getline(cin, topic_index);
         st_demo.show_topics(std::stoi(topic_index), FLAGS_top_k);
     }
