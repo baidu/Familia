@@ -1,6 +1,6 @@
+install: make
 language: cpp
-compiler:
-    gcc
+compiler: gcc
 
 matrix:
   include:
@@ -15,5 +15,5 @@ matrix:
       env:
          - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
 
-scripts:
-	mkdir -p third_party && make deps && make clean && make -j4
+scripts: 
+    - ./build.sh
