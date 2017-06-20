@@ -31,6 +31,8 @@ Familia包含了三种主题模型：LDA, SentenceLDA, Topical Word Embedding (T
     cd model
     sh download_model.sh
 
+* 关于模型的详细配置说明可以参考[模型说明](https://github.com/baidu/Familia/blob/master/model/README.md)
+
 # 运行DEMO
 ## 文档主题推断
     
@@ -109,7 +111,7 @@ Familia包含了三种主题模型：LDA, SentenceLDA, Topical Word Embedding (T
     公安局  0.00678163
 
 其中，第一列表示LDA/SentenceLDA模型每个主题下的词，第二列的数值表示词在该主题下的重要程度。
-可通过更改脚本中--item_topic_table_path来指定LDA/SentenceLDA模型，--vocabulary_path配置对应的词表，--top_k和--num_topics来配置展现结果数以及模型对应的主题数目。
+可通过更改脚本中`--item_topic_table_path`来指定LDA/SentenceLDA模型，`--vocabulary_path`配置对应的词表，`--top_k`和`--num_topics`来配置展现结果数以及模型对应的主题数目。
 
     --vocabulary_path="./model/news/vocab_info.txt" --item_topic_table_path="./model/news/news_lda.model" --top_k=10 --num_topics=2000 # 选用新闻LDA主题模型，展现前10个结果
 
@@ -122,19 +124,19 @@ Familia包含了三种主题模型：LDA, SentenceLDA, Topical Word Embedding (T
     请输入主题编号(0-10000):    105
     Embedding Result              Multinomial Result
     ------------------------------------------------
-    对话                                    对话
-    磋商                                    合作
-    合作                                    中国
-    非方                                    磋商
-    探讨                                    交流
-    对话会议                                联合
-    议题                                    国家
-    中方                                    讨论
-    对话会                                  支持
-    交流                                    包括
+    对话                               对话
+    磋商                               合作
+    合作                               中国
+    非方                               磋商
+    探讨                               交流
+    对话会议                           联合
+    议题                               国家
+    中方                               讨论
+    对话会                             支持
+    交流                               包括
 
 其中，第一列为基于embedding的结果，第二列为基于多项分布的结果，均按照在主题中的重要程度从大到小的顺序排序。
-可通过更改脚本中--work_dir和--emb_file的配置选择其他TWE模型，--topic_words_file配置主题模型的主题结果，如
+可通过更改脚本中`--work_dir`和`--emb_file`的配置选择其他TWE模型，`--topic_words_file`配置主题模型的主题结果，如
 
     --work_dir="./model/news/" --emb_file="news_twe_lda.model" --topic_words_file="topic_words.lda.txt" # 选用新闻LDA主题模型训练得到TWE模型以及对应的主题展现结果
 
@@ -158,15 +160,15 @@ Familia包含了三种主题模型：LDA, SentenceLDA, Topical Word Embedding (T
     五人制            0.784913
     足球新闻          0.783203
 
-其中，每一行为一个词，数字表示该词与输入词的cosine距离，按照从大到小的顺序排序。可通过更改脚本中--work_dir配置选择其他模型，--emb_file配置选择对应的词向量模型文件，--top_k配置展现词的个数，如
+其中，每一行为一个词，数字表示该词与输入词的cosine距离，按照从大到小的顺序排序。可通过更改脚本中`--work_dir`配置选择其他模型，`--emb_file`配置选择对应的词向量模型文件，`--top_k`配置展现词的个数，如
 
     ./word_distance_demo --work_dir="./model/news" --emb_file="news_twe_lda.model" --top_k=20
 
 # 注意事项
 
-*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的LD_LIBRARY_PATH中。
+*   若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的`LD_LIBRARY_PATH`中。
 
-    export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH
+    `export LD_LIBRARY_PATH=./third_party/lib:$LD_LIBRARY_PATH`
 
 * 代码中内置简易的FMM分词工具，只针对主题模型中出现的词表进行正向匹配。该工具仅用于Demo示例使用，若对分词和语义准确度有更高要求，建议使用商用分词工具，并使用自定义词表的功能导入主题模型中的词表。
 
