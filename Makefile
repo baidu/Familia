@@ -10,7 +10,9 @@ ifndef PROTOC
 PROTOC = ${DEPS_PATH}/bin/protoc
 endif
 
-CXX=g++
+ifndef CXX
+	CXX = g++
+endif
 CXXFLAGS=-pipe \
   		 -W \
   		 -Wall \

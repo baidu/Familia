@@ -1,15 +1,14 @@
-install: make
+sudo: false
 language: cpp
-compiler: gcc
-os: linux
+compiler: g++
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-env:
-   - MATRIX_EVAL="CC=gcc-4.8 && CXX=g++-4.8"
+    - g++-4.8
 
-scripts: 
-    - ./build.sh
+install:
+- if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
+
+script: "bash -c ./build.sh"
