@@ -2,6 +2,10 @@
 
 Familia 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。
 
+# 模型介绍
+    
+Familia包含了三种主题模型：LDA, SentenceLDA, Topical Word Embedding (TWE)
+    三种主题模型。对应的模型介绍
 # 代码编译
 第三方依赖包括gflags-2.0，glogs-0.3.4，protobuf-2.5.0, 同时要求编译器支持C++11, g++ >= 4.8, 兼容Linux和Mac操作系统。
 默认情况下执行以下脚本会自动获取依赖并安装。
