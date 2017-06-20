@@ -59,8 +59,8 @@ public:
                                                                       _engine.get_model());
         float twe_sim = SemanticMatching::twe_based_similarity(q_tokens, doc_topic_dist, _twe);
 
-        cout << "LDA sim = " << lda_sim << endl
-             << "TWE sim = " << twe_sim << endl;
+        cout << "LDA Similarity = " << lda_sim << endl
+             << "TWE Similarity = " << twe_sim << endl;
     }
 
     // 计算长文本之间的相似度
