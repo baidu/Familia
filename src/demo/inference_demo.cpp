@@ -18,7 +18,7 @@ using std::cout;
 using std::endl;
 using namespace familia; // no lint
 
-DEFINE_string(work_dir, "./", "working directory");
+DEFINE_string(model_dir, "./", "model directory");
 DEFINE_string(conf_file, "lda.conf", "model configuration file");
 
 // 打印文档的主题分布
@@ -33,14 +33,14 @@ void print_doc_topic_dist(const vector<Topic>& topics) {
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./semantic_matching_demo --work_dir=\"PATH/TO/MODEL\" ") + 
+    string usage = string("Usage: ./semantic_matching_demo --model_dir=\"PATH/TO/MODEL\" ") + 
                    string("--conf_file=\"lda.conf\" ");
     google::SetUsageMessage(usage);
     google::ParseCommandLineFlags(&argc, &argv, true);
 
-    InferenceEngine engine(FLAGS_work_dir, FLAGS_conf_file, SamplerType::MetropolisHastings);
+    InferenceEngine engine(FLAGS_model_dir, FLAGS_conf_file, SamplerType::MetropolisHastings);
    
-    std::string vocab_path = FLAGS_work_dir + "/vocab_info.txt";
+    std::string vocab_path = FLAGS_model_dir + "/vocab_info.txt";
     Tokenizer* tokenizer = new SimpleTokenizer(vocab_path);
 
     string line;

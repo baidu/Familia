@@ -20,7 +20,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-DEFINE_string(work_dir, "./", "Working directory");
+DEFINE_string(model_dir, "./", "model directory");
 DEFINE_string(emb_file, "./", "Topical Word Embedding (TWE) file");
 DEFINE_string(topic_words_file, "./", "Topic word file");
 
@@ -28,9 +28,9 @@ namespace familia {
 // 主题词展示Demo类
 class TopicWordDemo {
 public:
-    TopicWordDemo() : _twe(FLAGS_work_dir, FLAGS_emb_file) {
+    TopicWordDemo() : _twe(FLAGS_model_dir, FLAGS_emb_file) {
         // 加载主题模型每个主题的返回词
-        load_topic_words(FLAGS_work_dir + "/" + FLAGS_topic_words_file);
+        load_topic_words(FLAGS_model_dir + "/" + FLAGS_topic_words_file);
     }
 
     ~TopicWordDemo() = default;
@@ -97,7 +97,7 @@ private:
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./topic_words_demo --work_dir=\"PATH/TO/MODEL\" ") +
+    string usage = string("Usage: ./topic_words_demo --model_dir=\"PATH/TO/MODEL\" ") +
                    string("--emb_file=\"webpage_twe_lda.model\" ") +
                    string("--topic_words_file=\"topic_words.txt\" ");
     google::SetUsageMessage(usage);

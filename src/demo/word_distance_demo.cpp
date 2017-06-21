@@ -16,7 +16,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-DEFINE_string(work_dir, "./", "working directory");
+DEFINE_string(model_dir, "./", "model directory");
 DEFINE_string(emb_file, "./", "Topical Word Embedding (TWE) file");
 DEFINE_int32(top_k, 20, "the nearest k words");
 
@@ -24,7 +24,7 @@ namespace familia {
 // 寻找距离词最邻近的K个词Demo类
 class WordDistanceDemo {
 public:
-    WordDistanceDemo() : _twe(FLAGS_work_dir, FLAGS_emb_file) {
+    WordDistanceDemo() : _twe(FLAGS_model_dir, FLAGS_emb_file) {
     }
 
     ~WordDistanceDemo() = default;
@@ -62,7 +62,7 @@ private:
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./word_distance_demo --work_dir=\"PATH/TO/MODEL\" ") +
+    string usage = string("Usage: ./word_distance_demo --model_dir=\"PATH/TO/MODEL\" ") +
                    string("--emb_file=\"webpage_twe_lda.model\" ") +
                    string("--top_k=\"20\" ");
     google::SetUsageMessage(usage);

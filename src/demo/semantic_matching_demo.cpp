@@ -18,7 +18,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-DEFINE_string(work_dir, "./", "working directory");
+DEFINE_string(model_dir, "./", "model directory");
 DEFINE_string(conf_file, "lda.conf", "model configuration");
 DEFINE_string(emb_file, "./", "Topical Word Embedding (TWE) file");
 DEFINE_int32(mode, 0, "0: query-doc similarity  1: doc-doc semantic distance");
@@ -28,10 +28,10 @@ namespace familia {
 // 主题模型语义匹配计算Demo类
 class SemanticMatchingDemo {
 public:
-    SemanticMatchingDemo() : _engine(FLAGS_work_dir, FLAGS_conf_file) , 
-                             _twe(FLAGS_work_dir, FLAGS_emb_file) {
+    SemanticMatchingDemo() : _engine(FLAGS_model_dir, FLAGS_conf_file) , 
+                             _twe(FLAGS_model_dir, FLAGS_emb_file) {
         // 初始化分词器, 加载主题模型词表
-        _tokenizer = new SimpleTokenizer(FLAGS_work_dir + "/vocab_info.txt");
+        _tokenizer = new SimpleTokenizer(FLAGS_model_dir + "/vocab_info.txt");
     }
 
     ~SemanticMatchingDemo() = default;
@@ -119,7 +119,7 @@ enum MatchingType {
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./semantic_matching_demo --work_dir=\"PATH/TO/MODEL\" ") + 
+    string usage = string("Usage: ./semantic_matching_demo --model_dir=\"PATH/TO/MODEL\" ") + 
                    string("--conf_file=\"lda.conf\" ") + 
                    string("--emb_file=\"webpage_twe_lda.model\" ");
     google::SetUsageMessage(usage);

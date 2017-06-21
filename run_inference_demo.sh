@@ -5,4 +5,4 @@ cd model
 sh download_model.sh
 cd ..
 
-./inference_demo --work_dir="./model/news" --conf_file="lda.conf"
+./inference_demo --model_dir="./model/news" --conf_file="lda.conf"

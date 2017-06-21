@@ -5,4 +5,4 @@ cd model
 sh download_model.sh
 cd ..
 
-./word_distance_demo --work_dir="./model/news" --emb_file="news_twe_lda.model" --top_k=20
+./word_distance_demo --model_dir="./model/news" --emb_file="news_twe_lda.model" --top_k=20
