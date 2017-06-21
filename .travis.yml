@@ -1,4 +1,4 @@
-sudo: false
+sudo: true
 language: cpp
 compiler: g++
 env:
