@@ -7,7 +7,7 @@
 
 # 应用介绍
     
-Familia目前包含的三种主题模型对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/Reference)。
+**Familia**目前包含的三种主题模型对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/Reference)。
 
 主题模型在工业界的应用范式可以抽象为两大类: 语义表示和语义匹配。
 
@@ -26,18 +26,18 @@ Familia目前包含的三种主题模型对应的论文介绍可以参考[相关
 第三方依赖包括`gflags-2.0`，`glogs-0.3.4`，`protobuf-2.5.0`, 同时要求编译器支持C++11, `g++ >= 4.8`, 兼容Linux和Mac操作系统。
 默认情况下执行以下脚本会自动获取依赖并安装。
     
-    sh build.sh # 包含获取并安装第三方依赖的过程
+    $ sh build.sh # 包含获取并安装第三方依赖的过程
 
 # 模型下载
 
-    cd model
-    sh download_model.sh
+    $ cd model
+    $ sh download_model.sh
 
 * 关于模型的详细配置说明可以参考[模型说明](https://github.com/baidu/Familia/blob/master/model/README.md)
 
 # DEMO
     
-Familia自带的Demo包含以下功能：
+**Familia**自带的Demo包含以下功能：
 -  **文档主题推断**
    
    对输入文档进行主题推断，以得到文档的主题降维表示。
