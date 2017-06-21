@@ -35,6 +35,22 @@ Familia目前包含的三种主题模型对应的论文介绍可以参考[相关
 * 关于模型的详细配置说明可以参考[模型说明](https://github.com/baidu/Familia/blob/master/model/README.md)
 
 # 运行DEMO
+    
+    Familia自带的Demo包含以下功能：
+    - * 文档主题推断
+        
+        对输入文档进行主题推断，以得到文档的主题降维表示。
+
+    - * 语义匹配计算
+        
+        计算文件间相似度，包括短文本-长文本、长文本-长文本间的相似度计算。
+
+    - * 模型内容展现
+        
+        对模型的主题词，近邻词进行展现，供用户对模型的主题有直观的理解。
+
+* 具体的Demo使用说明可以参考[模型说明](https://github.com/baidu/Familia/wiki/%E8%BF%90%E8%A1%8CDemo)
+
 ## 文档主题推断
     
     sh run_inference_demo.sh # 运行文档主题推断的demo
