@@ -5,9 +5,9 @@
 
 **Familia** 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。
 
-# 应用介绍
+## 应用介绍
     
-**Familia**目前包含的三种主题模型对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)。
+**Familia**目前包含的三种主题模型，对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)。
 
 主题模型在工业界的应用范式可以抽象为两大类: 语义表示和语义匹配。
 
@@ -24,20 +24,20 @@
 
 更详细的内容及应用案例可以参考[**Familia Wiki**](https://github.com/baidu/Familia/wiki)
 
-# 代码编译
+## 代码编译
 第三方依赖包括`gflags-2.0`，`glogs-0.3.4`，`protobuf-2.5.0`, 同时要求编译器支持C++11, `g++ >= 4.8`, 兼容Linux和Mac操作系统。
 默认情况下执行以下脚本会自动获取依赖并安装。
     
     $ sh build.sh # 包含获取并安装第三方依赖的过程
 
-# 模型下载
+## 模型下载
 
     $ cd model
     $ sh download_model.sh
 
 * 关于模型的详细配置说明可以参考[模型说明](https://github.com/baidu/Familia/blob/master/model/README.md)
 
-# DEMO
+## DEMO
     
 **Familia**自带的Demo包含以下功能：
 -  **语义表示计算**
@@ -54,7 +54,7 @@
 
 具体的Demo使用说明可以参考[Demo使用文档](https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 
-# 注意事项
+## 注意事项
 
 * 若出现找不到libglog.so, libgflags.so等动态库错误，请添加third_party至环境变量的`LD_LIBRARY_PATH`中。
 
@@ -69,4 +69,4 @@
 
 ## Copyright and License
 
-Familia is provided under the [BSD-3-Clause license](LICENSE).
+Familia is provided under the [BSD-3-Clause License](LICENSE).
