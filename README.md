@@ -22,7 +22,7 @@
     - 短文本-长文本相似度计算，使用场景包括文档关键词抽取、计算搜索引擎查询和网页的相似度等等。
     - 长文本-长文本相似度计算，使用场景包括计算两篇文档的相似度、计算用户画像和新闻的相似度等等。
 
-更详细的内容可以参考[Familia Wiki](https://github.com/baidu/Familia/wiki)
+更详细的内容及应用案例可以参考[**Familia Wiki**](https://github.com/baidu/Familia/wiki)
 
 # 代码编译
 第三方依赖包括`gflags-2.0`，`glogs-0.3.4`，`protobuf-2.5.0`, 同时要求编译器支持C++11, `g++ >= 4.8`, 兼容Linux和Mac操作系统。
@@ -40,9 +40,9 @@
 # DEMO
     
 **Familia**自带的Demo包含以下功能：
--  **文档主题推断**
+-  **语义表示计算**
    
-   对输入文档进行主题推断，以得到文档的主题降维表示。
+   利用主题模型对输入文档进行主题推断，以得到文档的主题降维表示。
 
 -  **语义匹配计算**
    
@@ -52,7 +52,7 @@
     
     对模型的主题词，近邻词进行展现，供用户对模型的主题有直观的理解。
 
-具体的Demo使用说明可以参考[Demo使用说明](https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+具体的Demo使用说明可以参考[Demo使用文档](https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 
 # 注意事项
 
@@ -62,3 +62,11 @@
 
 * 代码中内置简易的FMM分词工具，只针对主题模型中出现的词表进行正向匹配。该工具仅用于Demo示例使用，若对分词和语义准确度有更高要求，建议使用商用分词工具，并使用自定义词表的功能导入主题模型中的词表。
 
+## 问题咨询
+
+欢迎提交任何问题和Bug Report至[Github Issues](https://github.com/baidu/Familia/issues).
+或者发送咨询邮件至{ familia } at baidu.com
+
+## Copyright and License
+
+Familia is provided under the [BSD-3-Clause license](LICENSE).
