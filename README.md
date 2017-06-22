@@ -7,7 +7,7 @@
 
 # 应用介绍
     
-**Familia**目前包含的三种主题模型对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/Reference)。
+**Familia**目前包含的三种主题模型对应的论文介绍可以参考[相关论文](https://github.com/baidu/Familia/wiki/%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE)。
 
 主题模型在工业界的应用范式可以抽象为两大类: 语义表示和语义匹配。
 
@@ -21,6 +21,8 @@
 
     - 短文本-长文本相似度计算，使用场景包括文档关键词抽取、计算搜索引擎查询和网页的相似度等等。
     - 长文本-长文本相似度计算，使用场景包括计算两篇文档的相似度、计算用户画像和新闻的相似度等等。
+
+更详细的内容可以参考**Familia** Wiki[Wiki地址](https://github.com/baidu/Familia/wiki)
 
 # 代码编译
 第三方依赖包括`gflags-2.0`，`glogs-0.3.4`，`protobuf-2.5.0`, 同时要求编译器支持C++11, `g++ >= 4.8`, 兼容Linux和Mac操作系统。

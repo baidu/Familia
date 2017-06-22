@@ -78,3 +78,5 @@ include/config.pb.h src/config.cpp : proto/config.proto
 	$(PROTOC) --cpp_out=./src --proto_path=./proto $<
 	mv src/config.pb.h ./include/familia
 	mv src/config.pb.cc ./src/config.cpp
+
+-include $(wildcard */*.d *.d)
