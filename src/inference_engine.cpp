@@ -13,14 +13,14 @@
 
 namespace familia {
 
-InferenceEngine::InferenceEngine(const std::string& work_dir,
+InferenceEngine::InferenceEngine(const std::string& model_dir,
                                  const std::string& conf_file,
                                  SamplerType type) {
     LOG(INFO) << "Inference Engine initializing...";
     // 读取模型配置和模型
     ModelConfig config;
-    load_prototxt(work_dir + "/" + conf_file, config);
-    _model = std::make_shared<TopicModel>(work_dir, config);
+    load_prototxt(model_dir + "/" + conf_file, config);
+    _model = std::make_shared<TopicModel>(model_dir, config);
 
     // 根据配置初始化采样器
     if (type == SamplerType::GibbsSampling) {

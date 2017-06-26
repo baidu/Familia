@@ -14,16 +14,16 @@
 #include <vector>
 
 using std::string;
-using std::vector;
+using std::vector; 
 using std::cin;
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::unordered_map;
 
-DEFINE_string(vocabulary_path, "./", "the path of the vocabulary file");
-DEFINE_string(item_topic_table_path, "./", "the path of the item_topic_table file");
+DEFINE_string(model_dir, "./", "model directory");
+DEFINE_string(conf_file, "lda.conf", "model configuration");
 DEFINE_int32(top_k, 20, "the nearest k words in a topic");
-DEFINE_int32(num_topics, 2000, "the number of the topic");
 
 const double EPS = 1e-8;
 
@@ -125,7 +125,7 @@ public:
                     << endl;
             }
         } else {
-            cout << topic_id << " is illegal" << endl;
+            cerr << topic_id << " is out of range!" << endl;
         }
     }
 private:
@@ -139,22 +139,26 @@ private:
 int main(int argc, char* argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     google::SetVersionString("1.0.0.0");
-    string usage = string("Usage: ./show_topic_demo --vocabulary_path=\"PATH/TO/VOCABULARY\" ") +
-                   string("--item_topic_table_path=\"PATH/TO/ITEM_TOPIC_TABLE\" ") +
-                   string("--topic_num=\"2000\" ") +
+    string usage = string("Usage: ./show_topic_demo --model_dir=\"PATH/TO/MODEL\" ") +
+                   string("--conf_file=\"lda.conf\"") +
                    string("--top_k=\"20\" ");
     google::SetUsageMessage(usage);
     google::ParseCommandLineFlags(&argc, &argv, true);
 
-    familia::ShowTopicDemo st_demo(FLAGS_num_topics,
-            FLAGS_vocabulary_path,
-            FLAGS_item_topic_table_path);
+    // 读取模型配置和模型
+    familia::ModelConfig config;
+    load_prototxt(FLAGS_model_dir + "/" + FLAGS_conf_file, config);
 
-    string topic_index;
+    familia::ShowTopicDemo st_demo(config.num_topics(),
+                                   FLAGS_model_dir + "/" + config.vocab_file(),
+                                   FLAGS_model_dir + "/" + config.word_topic_file());
+
+    string topic_id_str;
     while (true) {
-        cout << "请输入主题编号(0-" << FLAGS_num_topics - 1 << "):\t";
-        getline(cin, topic_index);
-        st_demo.show_topics(std::stoi(topic_index), FLAGS_top_k);
+        cout << "请输入主题编号(0-" << config.num_topics() - 1 << "):";
+        getline(cin, topic_id_str);
+        int t_id = std::stoi(topic_id_str);
+        st_demo.show_topics(t_id, FLAGS_top_k);
     }
 
     return 0;
