@@ -24,4 +24,7 @@ message ModelConfig {
 
     // 词表文件名
     optional string vocab_file = 7 [default = "vocab_info.txt"];
+
+    // Topical Word Embedding 模型文件
+    optional string twe_model_file = 8 [default = ""];
 }

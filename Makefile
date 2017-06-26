@@ -34,7 +34,8 @@ all: familia
 	@echo $(SOURCES)
 	@echo $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/inference_demo.o  $(LDFLAGS_SO) -o inference_demo
-	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/semantic_matching_demo.o $(LDFLAGS_SO)  -o semantic_matching_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/doc_distance_demo.o $(LDFLAGS_SO)  -o doc_distance_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/query_doc_sim_demo.o $(LDFLAGS_SO)  -o query_doc_sim_demo
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/word_distance_demo.o $(LDFLAGS_SO) -o word_distance_demo
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/topic_word_demo.o $(LDFLAGS_SO) -o topic_word_demo
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/show_topic_demo.o $(LDFLAGS_SO) -o show_topic_demo
@@ -59,7 +60,8 @@ familia: build/libfamilia.a
 
 OBJS = $(addprefix build/, vose_alias.o inference_engine.o model.o vocab.o document.o sampler.o config.o util.o semantic_matching.o tokenizer.o \
 		                   demo/inference_demo.o \
-						   demo/semantic_matching_demo.o \
+						   demo/doc_distance_demo.o \
+						   demo/query_doc_sim_demo.o \
 						   demo/word_distance_demo.o \
 						   demo/topic_word_demo.o \
 						   demo/show_topic_demo.o)

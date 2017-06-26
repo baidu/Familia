@@ -32,9 +32,9 @@ struct WordAndDis {
 // 包括了模型的加载及embedding的获取
 class TopicalWordEmbedding {
 public:
-    TopicalWordEmbedding(const std::string& work_dir, 
+    TopicalWordEmbedding(const std::string& model_dir, 
                          const std::string& emb_file) {
-        const std::string emb_path = work_dir + "/"  + emb_file; 
+        const std::string emb_path = model_dir + "/"  + emb_file; 
         CHECK_EQ(load_emb(emb_path), 0) << "Failed to load Topical Word Embedding!";
     }
 
