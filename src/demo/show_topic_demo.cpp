@@ -30,9 +30,9 @@ const double EPS = 1e-8;
 namespace familia {
 
 struct WordCount {
-    int32_t word_id;
-    int32_t count;
-    WordCount(int32_t id, int32_t cnt) : word_id(id), count(cnt) {}
+    int word_id;
+    int count;
+    WordCount(int id, int cnt) : word_id(id), count(cnt) {}
 };
 
 struct WordCountCmpGreater {
@@ -44,7 +44,7 @@ struct WordCountCmpGreater {
 // 加载词典信息
 void load_vocabulary(
     const string& vocabulary_path,
-    unordered_map<int32_t, string>& vocabulary) {
+    unordered_map<int, string>& vocabulary) {
     std::ifstream infile(vocabulary_path);
     string line;
 
@@ -75,13 +75,13 @@ void load_item_topic_table(
         split(items, line, ' ');
         CHECK_GE(items.size(), 2);
 
-        int32_t word_id = std::stoi(items[0]);
+        int word_id = std::stoi(items[0]);
         for (size_t i = 1; i < items.size(); i++) {
             vector<string> temps;
             split(temps, items[i], ':');
             CHECK_EQ(temps.size(), 2);
-            int32_t topic_index = std::stoi(temps[0]);
-            int32_t count = std::stoi(temps[1]);
+            int topic_index = std::stoi(temps[0]);
+            int count = std::stoi(temps[1]);
             // 统计每个主题下词的总数
             topic_sum_table[topic_index] += count;
             WordCount current_word_count(word_id, count);
@@ -91,24 +91,22 @@ void load_item_topic_table(
     infile.close();
 }
 
-// 展示指定主题下前k个词
+// 展示主题模型中某个主题下重要程度最高的Top K个词
 class ShowTopicDemo {
 public:
-    ShowTopicDemo(
-        int32_t num_topics,
-        const string& vocabulary_path,
-        const string& item_topic_table_path) {
-        _num_topics = num_topics;
+    ShowTopicDemo(int num_topics, 
+                  const string& vocabulary_path, 
+                  const string& item_topic_table_path) : 
+        _num_topics(num_topics) {
         _topic_sum_table.resize(_num_topics);
         _topic_words.resize(_num_topics);
         load_vocabulary(vocabulary_path, _vocabulary);
         load_item_topic_table(item_topic_table_path, _topic_sum_table, _topic_words);
         // 排序
-        for (int32_t i = 0; i < num_topics; i++) {
+        for (int i = 0; i < num_topics; i++) {
             std::sort(_topic_words[i].begin(), _topic_words[i].end(), word_count_cmp_greater);
         }
     }
-
 
     ~ShowTopicDemo() = default;
 
@@ -116,22 +114,20 @@ public:
     void show_topics(int topic_id, int k) {
         cout << "--------------------------------------------" << endl;
         if (topic_id >= 0 && topic_id < _num_topics) {
-            if (k > (int)_topic_words[topic_id].size()) {
-                k = _topic_words[topic_id].size();
-            }
-            for (int32_t i = 0; i < k; i++) {
-                cout << _vocabulary[_topic_words[topic_id][i].word_id] << "\t"
-                    << (float)(_topic_words[topic_id][i].count) / (_topic_sum_table[topic_id] + EPS)
-                    << endl;
+            k = std::min(k, static_cast<int>(_topic_words[topic_id].size()));
+            for (int i = 0; i < k; i++) {
+                float prob = (_topic_words[topic_id][i].count * 1.0) / 
+                             (_topic_sum_table[topic_id] + EPS)
+                cout << _vocabulary[_topic_words[topic_id][i].word_id] << "\t" << prob << endl;
             }
         } else {
-            cerr << topic_id << " is out of range!" << endl;
+            LOG(ERROR) << topic_id << " is out of range!";
         }
     }
 private:
-    int32_t _num_topics;
+    int _num_topics;
     vector<int64_t> _topic_sum_table;
-    unordered_map<int32_t, string> _vocabulary;
+    unordered_map<int, string> _vocabulary;
     vector<vector<WordCount> > _topic_words;
 };
 } // namespace familia

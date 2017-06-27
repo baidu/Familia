@@ -45,7 +45,8 @@ include depends.mk
 .PHONY: clean
 clean:
 	rm -rf inference_demo
-	rm -rf semantic_matching_demo
+	rm -rf doc_distance_demo
+	rm -rf query_doc_sim_demo
 	rm -rf word_distance_demo
 	rm -rf topic_word_demo
 	rm -rf show_topic_demo
