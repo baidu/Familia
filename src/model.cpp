@@ -10,7 +10,7 @@
 
 namespace familia {
 
-TopicModel::TopicModel(const std::string& work_dir, const ModelConfig& config) {
+TopicModel::TopicModel(const std::string& model_dir, const ModelConfig& config) {
     _num_topics = config.num_topics();
     _beta = config.beta();
     _alpha = config.alpha();
@@ -19,7 +19,7 @@ TopicModel::TopicModel(const std::string& work_dir, const ModelConfig& config) {
     _type = config.type();
 
     // 加载模型
-    load_model(work_dir + "/" + config.word_topic_file(), work_dir + "/" + config.vocab_file());
+    load_model(model_dir + "/" + config.word_topic_file(), model_dir + "/" + config.vocab_file());
 }
 
 uint64_t TopicModel::topic_sum(int topic_id) const {

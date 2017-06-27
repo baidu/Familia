@@ -29,7 +29,7 @@ class TopicModel {
 public:
     TopicModel() = delete;
 
-    TopicModel(const std::string& work_dir, const ModelConfig& config);
+    TopicModel(const std::string& model_dir, const ModelConfig& config);
 
     inline int term_id(const std::string& term) const {
         return _vocab.get_id(term);

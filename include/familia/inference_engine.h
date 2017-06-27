@@ -31,7 +31,7 @@ public:
     ~InferenceEngine() = default;
 
     // 默认使用 Metroplis-Hastings 采样算法
-    InferenceEngine(const std::string& work_dir, 
+    InferenceEngine(const std::string& model_dir, 
                     const std::string& conf_file, 
                     SamplerType type = SamplerType::MetropolisHastings);
     
