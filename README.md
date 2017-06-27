@@ -52,7 +52,7 @@
     
     对模型的主题词，近邻词进行展现，供用户对模型的主题有直观的理解。
 
-具体的Demo使用说明可以参考[Demo使用文档](https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
+具体的Demo使用说明可以参考[使用文档](https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
 
 ## 注意事项
 

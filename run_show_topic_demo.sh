@@ -5,4 +5,4 @@ cd model
 sh download_model.sh
 cd ..
 
-./show_topic_demo --model_dir="./model/news/" --conf_file="lda.conf" --top_k=20
+./show_topic_demo --model_dir="./model/news/" --conf_file="lda.conf" --top_k=10
