@@ -64,15 +64,13 @@ void LDADoc::sparse_topic_dist(vector<Topic>& topic_dist, bool sort) const {
 void LDADoc::dense_topic_dist(vector<float>& dense_dist) const {
     dense_dist.clear();
     dense_dist.resize(_num_topics, 0.0);
-    size_t sum = 0;
-    for (int i = 0; i < _num_topics; ++i) {
-        sum += _accum_topic_sum[i] / _num_accum;
-    }
-    if (sum == 0) {
-        return; // 返回0向量
+    // 若文档长度为0，则范围0向量
+    if (size() == 0) {
+        return;
     }
     for (int i = 0; i < _num_topics; ++i) {
-        dense_dist[i] = (_accum_topic_sum[i] / _num_accum + _alpha) / (sum + _alpha * _num_topics);
+        dense_dist[i] = (_accum_topic_sum[i] * 1.0/ _num_accum + _alpha) 
+                        / (size() + _alpha * _num_topics);
     }
 }
 
