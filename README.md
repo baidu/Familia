@@ -37,6 +37,8 @@
 
 * 关于模型的详细配置说明可以参考[模型说明](https://github.com/baidu/Familia/blob/master/model/README.md)
 
+我们会陆续开放更多不同领域的多种主题模型，来满足更多不同的场景需求。
+
 ## DEMO
     
 **Familia**自带的Demo包含以下功能：
