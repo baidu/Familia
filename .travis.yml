@@ -1,30 +1,12 @@
-sudo: true
+sudo: false
 language: cpp
 compiler: g++
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "jLKp7ODUuVpbHZrKr2t3aPMGy+5dCdZKOkJ9ZCNAyb7Tf7zk9YMLfOY+fuzBkKpZk10y+EvRCCr+xn8cgDO6dqE4lEqXhQwScUlQMOWtMAv9ZPJqFyV/8p2U5tuVsKn1UgfbH9iu9PA6j/mv9FF1vVyXdppA3JN0XlB9lMm8yjLd6HQFYQoLeLMp0k7VORcFGxWQtqgjzBODN4WnvfKLIQ41clPemTdzb2tt3vvfe7v+moknZSQcLckicAiyChOVsD5IvofsVJVKNlhXhJvLfA9dUzR2uPOE6hQdOM/Gab/lHz/v0EJGqtCeCXO4ZLTBgxwvBRRtzKl/YuqdpvaqJDjix5TiXjZNKyCtJZHRmjKboh0H0AMUL4fzQBb59bZuN11zKhid6bUaOrYx74gX/RYNcA+A8WSIbiUDN7su8tpTMMV5ahUPYDsAsu4B1IQc1jPfB3YgiDBvb9LOWZzwliOcv6XOomwSLj+EOGrtP5meQ7FKqctrfhbnhqvFIErwyqb66jhs5wdH8cDugk1Kvy7LwhOexqANdBpt8HTEBB6YHzK7+c81r2Vg3J3XWXiX8RyMG8801y0mKI4EZ5SVfQxahI72yMP3muzCh4H3OK6mTSceCke/oDZeSMVsgwRh6jhDsoka8LMqn5afxuJJjhMvEG3PcQrtww8K5lcZJdk="
-
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-  coverity_scan:
-    project:
-      name: "baidu/Familia"
-      description: "Build submitted via Travis CI"
-    notification_email: zeyuchen@outlook.com
-    build_command_prepend: "make clean && make -p third_party && make deps"
-    build_command:   "make -j4"
-    branch_pattern: master
-
-before_install:
-      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
 
 install:
 - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
