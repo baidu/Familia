@@ -117,7 +117,7 @@ public:
             k = std::min(k, static_cast<int>(_topic_words[topic_id].size()));
             for (int i = 0; i < k; i++) {
                 float prob = (_topic_words[topic_id][i].count * 1.0) / 
-                             (_topic_sum_table[topic_id] + EPS)
+                             (_topic_sum_table[topic_id] + EPS);
                 cout << _vocabulary[_topic_words[topic_id][i].word_id] << "\t" << prob << endl;
             }
         } else {
