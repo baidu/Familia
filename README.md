@@ -1,5 +1,3 @@
-# Familia
-
 <a href="http://github.com/baidu/Familia">
     <img style="vertical-align: top;" src="https://raw.githubusercontent.com/wiki/baidu/Familia/img/logo.png?raw=true" alt="logo" height="80px">
 </a>
