@@ -1,5 +1,5 @@
 <a href="http://github.com/baidu/Familia">
-    <img style="vertical-align: top;" src="https://raw.githubusercontent.com/wiki/baidu/Familia/img/familia_logo.png?raw=true" alt="logo" height="60px">
+    <img style="vertical-align: top;" src="https://raw.githubusercontent.com/wiki/baidu/Familia/img/familia_logo.png?raw=true" alt="logo" height="50px">
 </a>
 
 [![Build Status](https://travis-ci.org/baidu/Familia.svg?branch=master)](http://travis-ci.org/baidu/Familia)
