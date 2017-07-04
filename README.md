@@ -1,5 +1,8 @@
 # Familia
 
+<a href="http://github.com/baidu/Familia">
+    <img style="vertical-align: top;" src="https://raw.githubusercontent.com/wiki/baidu/Familia/img/logo_small.png?raw=true" alt="logo" height="50px">
+</a>
 [![Build Status](https://travis-ci.org/baidu/Familia.svg?branch=master)](http://travis-ci.org/baidu/Familia)
 [![License](https://img.shields.io/pypi/l/Django.svg)]()
 
