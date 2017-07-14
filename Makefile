@@ -27,7 +27,7 @@ INCPATH=-I./include/ \
 		-I./include/familia \
   		-I./third_party/include
 
-LDFLAGS_SO = -L$(DEPS_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
+LDFLAGS_SO = -L$(DEPS_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags -lpthread -lunwind
 
 .PHONY: all
 all: familia
