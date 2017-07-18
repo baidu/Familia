@@ -61,7 +61,7 @@ clean:
 	find src -name "*.pb.[ch]*" -delete
 
 # third party dependency
-deps: ${GLOGS} ${GFLAGS} ${PROTOBUF} ${PYTHON}
+deps: ${GLOGS} ${GFLAGS} ${PROTOBUF}
 	@echo "dependency installed!"
 
 familia: build/libfamilia.a
