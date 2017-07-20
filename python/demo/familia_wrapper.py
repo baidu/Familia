@@ -160,7 +160,7 @@ class TopicalWordEmbeddingsWrapper:
             familia.destroy_twe(self._twe)
 
     def nearest_words(self, word, k = 10):
-        """寻求与目标词最相关的词语组
+        """寻求与目标词最相关的词
         对模型中的所有词语(不包哈目标词)进行检索，通过计算cosine相似度，返回最相关的k个词语
         Args:
             word: 目标词
@@ -177,7 +177,7 @@ class TopicalWordEmbeddingsWrapper:
         return familia.nearest_words(self._twe, word, k)
 
     def nearest_words_around_topic(self, topic_id, k = 10):
-        """寻求与目标主题最相关的词语组
+        """寻求与目标主题最相关的词
         对模型中的所有词语进行检索，通过计算cosine相似度，返回最相关的k个词语
         Args:
             topic_id: 目标主题ID
