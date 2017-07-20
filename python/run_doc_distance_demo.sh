@@ -5,4 +5,4 @@ cd ../model
 sh download_model.sh
 cd ../python
 
-python doc_distance_demo.py ../model/news lda.conf
+python demo/doc_distance_demo.py ../model/news lda.conf

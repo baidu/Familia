@@ -5,4 +5,4 @@ cd ../model
 sh download_model.sh
 cd ../python
 
-python topic_word_demo.py ../model/news news_twe_lda.model
+python demo/topic_word_demo.py ../model/news news_twe_lda.model

@@ -7,11 +7,11 @@
 # Author: lianrongzhong@baidu.com
 
 import sys
-from inference_engine_wrapper import InferenceEngineWrapper
+from familia_wrapper import InferenceEngineWrapper
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        sys.stderr.write("python {} {} {}.\n".format(
+        sys.stderr.write("Usage:python {} {} {}.\n".format(
             sys.argv[0], "model_dir", "conf_file"))
         exit(-1)
 
@@ -26,5 +26,5 @@ if __name__ == '__main__':
         doc2 = raw_input("Enter Document2: ").strip()
         distances = inference_engine_wrapper.cal_doc_distance(doc1, doc2)
         # 打印结果
-        print "Jensen-Shannon Divergence = {}".format(distances[0])
-        print "Hellinger Distance = {}".format(distances[1])
+        print("Jensen-Shannon Divergence = {}".format(distances[0]))
+        print("Hellinger Distance = {}".format(distances[1]))

@@ -5,4 +5,4 @@ cd ../model
 sh download_model.sh
 cd ../python
 
-python word_distance_demo.py ../model/news news_twe_lda.model
+python demo/word_distance_demo.py ../model/news news_twe_lda.model

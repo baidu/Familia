@@ -7,11 +7,11 @@
 # Author: lianrongzhong@baidu.com
 
 import sys
-from inference_engine_wrapper import InferenceEngineWrapper
+from familia_wrapper import InferenceEngineWrapper
 
 if __name__ == '__main__':
     if len(sys.argv) < 4:
-        sys.stderr.write("python {} {} {} {}.\n".format(
+        sys.stderr.write("Usage:python {} {} {} {}.\n".format(
             sys.argv[0], "model_dir", "conf_file", "emb_file"))
         exit(-1)
 
@@ -27,5 +27,5 @@ if __name__ == '__main__':
         doc = raw_input("Enter Document: ").strip()
         distances = inference_engine_wrapper.cal_query_doc_similarity(query, doc)
         # 打印结果
-        print "LDA Similarity = {}".format(distances[0])
-        print "TWE similarity = {}".format(distances[1])
+        print("LDA Similarity = {}".format(distances[0]))
+        print("TWE similarity = {}".format(distances[1]))

@@ -5,4 +5,4 @@ cd ../model
 sh download_model.sh
 cd ../python
 
-python lda_infer_demo.py ../model/news lda.conf
+python ./demo/lda_infer_demo.py ../model/news lda.conf

@@ -4,7 +4,7 @@
 //
 // Author: lianrongzhong@baidu.com
 
-#include <python2.7/Python.h>
+#include <Python.h>
 #include <stdio.h>
 #include <string>
 #include <sstream>
@@ -323,6 +323,74 @@ static PyObject* cal_query_doc_similarity(PyObject* self, PyObject* args) {
     return py_list;
 }
 
+// 返回与目标词最相关的K个词
+static PyObject* nearest_words(PyObject* self, PyObject* args) {
+    UNUSED(self);
+    unsigned long twe_ptr = 0;
+    char* word = NULL;
+    int k = 0;
+    if (!PyArg_ParseTuple(args, "ksi", &twe_ptr, &word, &k)) {
+        LOG(ERROR) << "Failed to parse find_nearest_words parameters.";
+        return NULL;
+    }
+
+    // 检查词典是否包含目标词
+    TopicalWordEmbedding* twe = (TopicalWordEmbedding*)(twe_ptr);
+    if (!twe->contains_word(word)) {
+        LOG(INFO) << word << " is out of vocabulary.";
+        Py_RETURN_NONE;
+    }
+
+    // 查询最邻近的词
+    vector<WordAndDis> items(k);
+    twe->nearest_words(word, items);
+
+    // 将结果封装成list返回
+    PyObject* py_list = PyList_New(0);
+    if (py_list != NULL) {
+        for (size_t i = 0; i < items.size(); ++i) {
+            PyObject* item = Py_BuildValue("(sf)", items[i].word.c_str(), items[i].distance);
+            PyList_Append(py_list, item);
+            Py_CLEAR(item);
+        }
+    }
+    return py_list;
+}
+
+// 返回对应主题下最邻近的词
+static PyObject* nearest_words_around_topic(PyObject* self, PyObject* args) {
+    UNUSED(self);
+    unsigned long twe_ptr = 0;
+    int topic_id = 0;
+    int k = 0;
+    if (!PyArg_ParseTuple(args, "kii", &twe_ptr, &topic_id, &k)) {
+        LOG(ERROR) << "Failed to parse nearest_words_around_topic parameters.";
+        return NULL;
+    }
+
+    // 判断主题ID是否在合法范围内
+    TopicalWordEmbedding* twe = (TopicalWordEmbedding*)(twe_ptr);
+    if (0 > topic_id || topic_id >= twe->num_topics()) {
+        LOG(INFO) << "Topic_id " << topic_id << " is iilegal.";
+        Py_RETURN_NONE;
+    }
+
+    // 查询该主题下最邻近的词
+    vector<WordAndDis> items(k);
+    twe->nearest_words_around_topic(topic_id, items);
+
+    // 将结果封装成list返回
+    PyObject* py_list = PyList_New(0);
+    if (py_list != NULL) {
+        for (size_t i = 0; i < items.size(); ++i) {
+            PyObject* item = Py_BuildValue("(sf)", items[i].word.c_str(), items[i].distance);
+            PyList_Append(py_list, item);
+            Py_CLEAR(item);
+        }
+    }
+    return py_list;
+}
+
 // 定义各个函数
 static PyMethodDef Methods[] = {
     {"init_inference_engine", (PyCFunction)init_inference_engine, METH_VARARGS, "init_inference_engine"},
@@ -337,11 +405,30 @@ static PyMethodDef Methods[] = {
     {"cal_doc_distance", (PyCFunction)cal_doc_distance, METH_VARARGS, "cal_doc_distance"},
     {"cal_query_doc_similarity", (PyCFunction)cal_query_doc_similarity,
         METH_VARARGS, "cal_query_doc_similarity"},
+    {"nearest_words", (PyCFunction)nearest_words, METH_VARARGS, "nearest_words"},
+    {"nearest_words_around_topic", (PyCFunction)nearest_words_around_topic,
+        METH_VARARGS, "nearest_words_around_topic"},
     {NULL, NULL, 0, NULL}
 };
 
-// 模块初始化
-PyMODINIT_FUNC initinference_engine(void) {
-    Py_InitModule("inference_engine", Methods);
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "familia",
+    NULL,
+    -1,
+    Methods
+};
+
+PyMODINIT_FUNC PyInit_familia(void) {
+    return PyModule_Create(&moduledef);
 }
+#else
+
+// 模块初始化
+PyMODINIT_FUNC initfamilia(void)
+{
+    Py_InitModule("familia", Methods);
+}
+#endif
 /* vim: set ts=4 sw=4 sts=4 tw=100 */

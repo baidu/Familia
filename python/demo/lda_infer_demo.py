@@ -7,12 +7,12 @@
 # Author: lianrongzhong@baidu.com
 
 import sys
-from inference_engine_wrapper import InferenceEngineWrapper
+from familia_wrapper import InferenceEngineWrapper
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        sys.stderr.write("python {} {} {}\n".format(
-            sys.argv[1], "model_dir", "conf_file"))
+        sys.stderr.write("Usage:python {} {} {}\n".format(
+            sys.argv[0], "model_dir", "conf_file"))
         exit(-1)
     # 获取参数
     model_dir = sys.argv[1]
@@ -23,13 +23,8 @@ if __name__ == '__main__':
         input_text = raw_input("Enter Document: ")
         # 分词
         seg_list = inference_engine_wrapper.tokenize(input_text)
-        # 构建句子结构,5个词为一个句子
-        sentences = []
-        length = len(seg_list)
-        for index in range(0, length, 5):
-            sentences.append(seg_list[index: index + 5])
         # 进行推断
-        topic_dist = inference_engine_wrapper.slda_infer(sentences)
+        topic_dist = inference_engine_wrapper.lda_infer(seg_list)
         # 打印结果
-        print "Document Topic Distribution:"
-        print topic_dist
+        print("Document Topic Distribution:")
+        print(topic_dist)
