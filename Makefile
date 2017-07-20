@@ -11,7 +11,7 @@ PYTHON_PATH = $(shell python -c"import sys; print(sys.prefix)")
 endif
 
 ifndef PYTHON_VERSION
-PYTHON_VERSION = $(shell python -c "import sys; print('{}.{}'.format(sys.version_info.major, sys.version_info.minor))")
+PYTHON_VERSION = $(shell ls $(PYTHON_PATH)/include | grep python)
 endif
 
 ifndef PYTHON_INCLUDE
@@ -40,7 +40,7 @@ INCPATH=-I./include/ \
   		-I./third_party/include \
 		-I$(PYTHON_INCLUDE)
 
-LDFLAGS_SO = -L$(DEPS_PATH)/lib -L$(PYTHON_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags -lpython$(PYTHON_VERSION)
+LDFLAGS_SO = -L$(DEPS_PATH)/lib -L$(PYTHON_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
 
 .PHONY: all
 all: familia python/demo/familia.so
@@ -101,6 +101,6 @@ include/config.pb.h src/config.cpp : proto/config.proto
 
 python/demo/familia.so : python/cpp/familia_wrapper.cpp familia
 	$(CXX) $(INCPATH) $(CXXFLAGS) -c $< -o python/cpp/familia_wrapper.o
-	$(CXX) $(INCPATH) $(CXXFLAGS) -shared python/cpp/familia_wrapper.o $(LDFLAGS_SO) -o $@
+	$(CXX) $(INCPATH) $(CXXFLAGS) -shared python/cpp/familia_wrapper.o $(LDFLAGS_SO) -l$(PYTHON_VERSION) -o $@
 
 -include $(wildcard */*.d *.d)

@@ -9,6 +9,9 @@
 import sys
 from familia_wrapper import TopicalWordEmbeddingsWrapper
 
+if sys.version_info < (3,0):
+    input = raw_input
+
 def print_result(result_list):
     # 分隔符
     print("Word\t\t\tCosine Distance")
@@ -29,6 +32,6 @@ if __name__ == "__main__":
     # 创建topical_word_embeddings_wrapper对象
     twe_wrapper = TopicalWordEmbeddingsWrapper(model_dir, emb_file)
     while True:
-        topic_id = int(raw_input("Enter TopicID: ").strip())
+        topic_id = int(input("Enter TopicID: ").strip())
         result_list = twe_wrapper.nearest_words_around_topic(topic_id, 10)
         print_result(result_list)

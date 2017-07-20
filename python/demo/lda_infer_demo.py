@@ -9,6 +9,9 @@
 import sys
 from familia_wrapper import InferenceEngineWrapper
 
+if sys.version_info < (3,0):
+    input = raw_input
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.stderr.write("Usage:python {} {} {}\n".format(
@@ -20,7 +23,7 @@ if __name__ == '__main__':
     # 创建InferenceEngineWrapper对象
     inference_engine_wrapper = InferenceEngineWrapper(model_dir, conf_file)
     while True:
-        input_text = raw_input("Enter Document: ")
+        input_text = input("Enter Document: ")
         # 分词
         seg_list = inference_engine_wrapper.tokenize(input_text)
         # 进行推断

@@ -9,6 +9,9 @@
 import sys
 from familia_wrapper import InferenceEngineWrapper
 
+if sys.version_info < (3,0):
+    input = raw_input
+
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.stderr.write("Usage:python {} {} {}.\n".format(
@@ -22,8 +25,8 @@ if __name__ == '__main__':
     inference_engine_wrapper = InferenceEngineWrapper(model_dir, conf_file)
     while True:
         # 输入两个长文本
-        doc1 = raw_input("Enter Document1: ").strip()
-        doc2 = raw_input("Enter Document2: ").strip()
+        doc1 = input("Enter Document1: ").strip()
+        doc2 = input("Enter Document2: ").strip()
         distances = inference_engine_wrapper.cal_doc_distance(doc1, doc2)
         # 打印结果
         print("Jensen-Shannon Divergence = {}".format(distances[0]))
