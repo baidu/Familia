@@ -20,4 +20,4 @@ TopicalWordEmbeddingsWrapper则提供了与TWE模型相关的接口：
 	- nearest_words                 # 寻求与目标词最相关的词语组
 	- nearest_words_around_topic    # 寻求与目标主题最相关的词语组
 
-具体使用方法可参照[使用文档](https://github.com/baidu/Familia/wiki/Python-Demo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
+具体使用方法可参照[Demo使用文档](https://github.com/baidu/Familia/wiki/Python-Demo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
