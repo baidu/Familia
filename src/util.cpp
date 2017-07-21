@@ -11,6 +11,9 @@ namespace familia {
 void split(std::vector<std::string>& result, const std::string& text, char separator) {
     size_t start = 0;
     size_t end = 0;
+    if (text.empty()) {
+        return;
+    }
     while ((end = text.find(separator, start)) != std::string::npos) {
         std::string substr = text.substr(start, end - start);
         result.push_back(std::move(substr));

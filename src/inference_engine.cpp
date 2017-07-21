@@ -24,8 +24,10 @@ InferenceEngine::InferenceEngine(const std::string& model_dir,
 
     // 根据配置初始化采样器
     if (type == SamplerType::GibbsSampling) {
+        LOG(INFO) << "Use GibbsSamling.";
         _sampler = std::unique_ptr<Sampler>(new GibbsSampler(_model));
     } else if (type == SamplerType::MetropolisHastings) {
+        LOG(INFO) << "Use MetropolisHastings.";
         _sampler = std::unique_ptr<Sampler>(new MHSampler(_model));
     }
 

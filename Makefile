@@ -6,6 +6,18 @@ ifndef DEPS_PATH
 DEPS_PATH = $(shell pwd)/third_party
 endif
 
+ifndef PYTHON_PATH
+PYTHON_PATH = $(shell python -c"import sys; print(sys.prefix)")
+endif
+
+ifndef PYTHON_VERSION
+PYTHON_VERSION = $(shell ls $(PYTHON_PATH)/include | grep python)
+endif
+
+ifndef PYTHON_INCLUDE
+PYTHON_INCLUDE = $(shell ls $(PYTHON_PATH)/include | grep python | sed "s:^:$(PYTHON_PATH)/include/:")
+endif
+
 ifndef PROTOC
 PROTOC = ${DEPS_PATH}/bin/protoc
 endif
@@ -25,12 +37,13 @@ CXXFLAGS=-pipe \
 
 INCPATH=-I./include/ \
 		-I./include/familia \
-  		-I./third_party/include
+  		-I./third_party/include \
+		-I$(PYTHON_INCLUDE)
 
-LDFLAGS_SO = -L$(DEPS_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
+LDFLAGS_SO = -L$(DEPS_PATH)/lib -L$(PYTHON_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
 
 .PHONY: all
-all: familia
+all: familia python/demo/familia.so
 	@echo $(SOURCES)
 	@echo $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/inference_demo.o  $(LDFLAGS_SO) -o inference_demo
@@ -50,13 +63,17 @@ clean:
 	rm -rf word_distance_demo
 	rm -rf topic_word_demo
 	rm -rf show_topic_demo
-	rm -rf build 
+	rm -rf build
+	rm -rf python/cpp/*.o
+	rm -rf python/demo/*.so
+	rm -rf python/demo/*.pyc
 	find src -name "*.pb.[ch]*" -delete
 
 # third party dependency
 deps: ${GLOGS} ${GFLAGS} ${PROTOBUF}
 	@echo "dependency installed!"
 
+.PHONY: familia
 familia: build/libfamilia.a
 
 OBJS = $(addprefix build/, vose_alias.o inference_engine.o model.o vocab.o document.o sampler.o config.o util.o semantic_matching.o tokenizer.o \
@@ -74,12 +91,16 @@ build/libfamilia.a: include/config.pb.h $(OBJS)
 build/%.o: src/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(INCPATH) $(CXXFLAGS) -MM -MT build/$*.o $< >build/$*.d
-	$(CXX) $(INCPATH) $(CXXFLAGS) -c $< -o $@ 
+	$(CXX) $(INCPATH) $(CXXFLAGS) -c $< -o $@
 
 # build proto
-include/config.pb.h src/config.cpp : proto/config.proto 
+include/config.pb.h src/config.cpp : proto/config.proto
 	$(PROTOC) --cpp_out=./src --proto_path=./proto $<
 	mv src/config.pb.h ./include/familia
 	mv src/config.pb.cc ./src/config.cpp
+
+python/demo/familia.so : python/cpp/familia_wrapper.cpp familia
+	$(CXX) $(INCPATH) $(CXXFLAGS) -c $< -o python/cpp/familia_wrapper.o
+	$(CXX) $(INCPATH) $(CXXFLAGS) -shared python/cpp/familia_wrapper.o $(LDFLAGS_SO) -l$(PYTHON_VERSION) -o $@
 
 -include $(wildcard */*.d *.d)
