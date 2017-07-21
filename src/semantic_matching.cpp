@@ -57,17 +57,15 @@ int TopicalWordEmbedding::load_emb(const string& emb_file) {
         if (i % 100000 == 0) {
             LOG(INFO) << "Loading embedding #id = " << i;
         }
-        fscanf(fin_emb, "%s", term);
-        fgetc(fin_emb); // 跳过空格
+        fread(term, sizeof(char), MAX_TOKEN_LENGTH, fin_emb);
         if (i < _vocab_size) { 
             // 加载word embedding
             _word_emb[term] = Embedding(_emb_size, 0);
             fread(_word_emb[term].data(), sizeof(Embedding::value_type), _emb_size, fin_emb);
-            fgetc(fin_emb); // 跳过\n
+            // fgetc(fin_emb); // 跳过\n
         } else { 
             // 加载topic embedding
             fread(emb.data(), sizeof(Embedding::value_type), _emb_size, fin_emb);
-            fgetc(fin_emb); // 跳过\n
             _topic_emb.push_back(emb);
         }
     }

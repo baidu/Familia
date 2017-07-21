@@ -156,7 +156,7 @@ class TopicalWordEmbeddingsWrapper:
 
     def __del__(self):
         """销毁TWE对象"""
-        if topical_word_embeddings is not None:
+        if familia is not None:
             familia.destroy_twe(self._twe)
 
     def nearest_words(self, word, k = 10):
