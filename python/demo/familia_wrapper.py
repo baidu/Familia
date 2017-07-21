@@ -80,7 +80,9 @@ class InferenceEngineWrapper:
         使用SentenceLDA模型对输入文本进行推断，得到其主题分布
 
         Args:
-            words: 分词后的list结果
+            sentences: 其中每个元素为一个list对象，存放一个句子
+            例如：
+            [[A, B, C], ..., [A, E, F]]
 
         Returns:
             返回一个list对象，存放输入文本对应的稀疏主题分布，list中每个元素为tuple
