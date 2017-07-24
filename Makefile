@@ -11,11 +11,11 @@ PYTHON_PATH = $(shell python -c"import sys; print(sys.prefix)")
 endif
 
 ifndef PYTHON_VERSION
-PYTHON_VERSION = $(shell ls $(PYTHON_PATH)/include | grep python)
+PYTHON_VERSION = $(shell ls $(PYTHON_PATH)/include | grep python | head -n1)
 endif
 
 ifndef PYTHON_INCLUDE
-PYTHON_INCLUDE = $(shell ls $(PYTHON_PATH)/include | grep python | sed "s:^:$(PYTHON_PATH)/include/:")
+PYTHON_INCLUDE = $(shell ls $(PYTHON_PATH)/include | grep python | head -n1 | sed "s:^:$(PYTHON_PATH)/include/:")
 endif
 
 ifndef PROTOC
