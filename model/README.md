@@ -4,7 +4,7 @@
 
 ### 新闻主题模型
 
-使用百度新闻2016全年千万级新闻数据训练, 词表数294657, 主题数2000。
+使用百度新闻2016全年千万级新闻数据训练, 词表规模294657, 主题数2000。
 模型包括LDA、SentenceLDA(SLDA), Topical Word Embedding (TWE), 其中模型均存放于model/news目录中
 
     * lda.conf      # LDA模型inference所需配置文件
@@ -16,7 +16,7 @@
 
 ### 网页主题模型
 
-使用千万级别网页数据训练，词表数283827，LDA模型主题数为4267，SentenceLDA(SLDA)模型主题数为5000。
+使用千万级别网页数据训练，词表规模283827，LDA模型主题数为4267，SentenceLDA(SLDA)模型主题数为5000。
 
 模型包括LDA、SentenceLDA(SLDA), Topical Word Embedding (TWE), 其中模型均存放于model/webpage目录中
 
