@@ -22,7 +22,7 @@
 
     * lda.conf      # LDA模型inference所需配置文件
     * slda.conf     # Sentence-LDA模型inference所需配置文件
-    * webpage_lda.model     # LDA模型参数, 存储格式为libSVM格式
+    * webpage_lda.model     # LDA模型参数, 存储格式为libSVM格式
     * webpage_slda.model    # Sentence-LDA模型参数, 存储格式为libSVM格式
     * webpage_twe_lda.model # TWE模型参数, 二进制存储, 包括词向量与主题向量
     * vocab_info.txt        # 词表文件, 中文编码采用UTF-8
