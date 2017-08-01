@@ -66,7 +66,7 @@
 
 ## Citation
 
-The following article describes the Familia project and industrial cases. It bundles and translates the Chinese documentation of the website. 
+The following article describes the Familia project and industrial cases powered by topic modeling. It bundles and translates the Chinese documentation of the website. We recommend citing this article as default.
 
 Di Jiang, Zeyu Chen, Rongzhong Lian, Siqi Bao and Chen Li. 2017. [Familia: An Open-Source Toolkit for Industrial Topic Modeling][8]. arXiv preprint arXiv:1707.09823.
 
