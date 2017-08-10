@@ -220,11 +220,3 @@ class TopicModelMerge(object):
             out_file.writelines("{} {}\n".format(word_id, ' '.join(word_topic[word_id])))
         out_file.close()
 
-
-if __name__ == '__main__':
-    topic_model_merge = TopicModelMerge(sys.argv[1], sys.argv[2])
-    test1 = [(1,2), (3,4)]
-    test2 = [(1,2), (2,3), (4,5)]
-    print(topic_model_merge.disjoint_set(test1))
-    print(topic_model_merge.disjoint_set(test2))
-    #topic_model_merge.reduce_topic(30, 0.01, 1, "merge.model")

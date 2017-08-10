@@ -331,7 +331,3 @@ class TopicModelFastMerge(object):
             out_file.writelines("{} {}\n".format(word_id, ' '.join(word_topic[word_id])))
         out_file.close()
 
-
-if __name__ == '__main__':
-    topic_model_merge = TopicModelMerge(sys.argv[1], sys.argv[2])
-    topic_model_merge.reduce_topic(30, 0.01, 32, "merge.model")
