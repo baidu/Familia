@@ -10,3 +10,8 @@ if [ ! -d webpage ]; then
     wget http://familia.bj.bcebos.com/models/webpage.tar.gz
     tar -xzf webpage.tar.gz
 fi
+
+if [ ! -d novel ]; then
+    wget http://familia.bj.bcebos.com/models/novel.tar.gz
+    tar -xzf novel.tar.gz
+fi
