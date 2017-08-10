@@ -1,6 +1,10 @@
 #coding=utf-8
 
-#filename: topic_model_fastmerge.py
+# Copyright (c) 2017, Baidu.com, Inc. All Rights Reserved
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+#
+# Author: lianrongzhong@baidu.com
 
 import sys
 from collections import defaultdict as ddict
