@@ -21,8 +21,8 @@ if __name__ == '__main__':
     parser.add_argument('--Jac_opt', action='store', type=int,
                         default=0, dest='Jac_opt',
                         help='0 stands for Jaccard Similarity, 1 stands for Weighted Jaccard Similarity')
-    parser.add_argument('--threshold', action='store', type=float, default=0.01,
-                        dest='threshold', help='the threshold to decide whether to delete')
+    parser.add_argument('--threshold', action='store', type=float, default=0.4,
+                        dest='threshold', help='the threshold to tell whether two topics are redundant')
     parser.add_argument('--output_file', action='store', default='./word_topic_merge.model',
                         dest='output_file', help='the output file of the merged model')
     paras = parser.parse_args()

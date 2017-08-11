@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--k', action='store', default=30, type=int,
                         dest='topk', help='the number of selected words for each topic')
     parser.add_argument('--threshold', action='store', type=float, default=0.4,
-                        dest='threshold', help='the threshold to tell whether two topic is redundant')
+                        dest='threshold', help='the threshold to tell whether two topics are redundant')
     parser.add_argument('--hashbits', action='store', type=int, default=32,
                         dest='hashbits', help='the number of bits of the hash code')
     parser.add_argument('--output_file', action='store', default='./word_topic_merge.model',

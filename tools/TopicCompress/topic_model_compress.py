@@ -118,7 +118,7 @@ class TopicModelCompress(object):
     def alias_compress(self, compress_thresh, output_file):
         """
         采样维度压缩，与alias方法保持一致在采样维度上的压缩。
-        计算每个词在每个主题下的占比，即count+beta)／(topic_id_sum+V*beta),其中V是指词表大小，beta是主题模型的超参
+        计算每个词在每个主题下的占比，即(count+beta)／(topic_id_sum+V*beta),其中V是指词表大小，beta是主题模型的超参
         删除占比较低的主题条目
 
         Args：
