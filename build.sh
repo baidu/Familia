@@ -2,4 +2,4 @@
 
 mkdir -p third_party
 make deps
-make clean && make -j4;
+make clean && make -j`nproc`;
