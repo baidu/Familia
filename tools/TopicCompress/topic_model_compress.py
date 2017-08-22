@@ -95,9 +95,10 @@ class TopicModelCompress(object):
             None
         """
         topic_word, topic_sum = self.conv_topic_word()
+        beta_sum = self._beta * self._num_vocabs
         # 遍历每个主题，删除低于阈值的词语
         for topic_id in range(self._num_topics):
-            threshold = compress_thresh * topic_sum[topic_id]
+            threshold = compress_thresh * (topic_sum[topic_id] + beta_sum) - self._beta
             topic_word[topic_id] = filter(lambda item: item[1] >= threshold, topic_word[topic_id])
 
         # 重新转换成词-主题格式
