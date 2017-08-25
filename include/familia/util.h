@@ -17,9 +17,9 @@
 namespace familia {
 
 // 返回一个可在多线程下工作的随机数引擎
-inline std::default_random_engine& local_random_engine() {
+inline std::mt19937& local_random_engine() {
     struct engine_wrapper_t {
-        std::default_random_engine engine;
+        std::mt19937 engine;
         engine_wrapper_t() {
             static std::atomic<unsigned long> x(0);
             std::seed_seq sseq = {x++, x++, x++, x++};
