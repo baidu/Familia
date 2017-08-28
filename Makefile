@@ -52,6 +52,7 @@ all: familia python/demo/familia.so
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/word_distance_demo.o $(LDFLAGS_SO) -o word_distance_demo
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/topic_word_demo.o $(LDFLAGS_SO) -o topic_word_demo
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/show_topic_demo.o $(LDFLAGS_SO) -o show_topic_demo
+	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/document_keywords_demo.o $(LDFLAGS_SO) -o document_keywords_demo
 
 include depends.mk
 
@@ -63,6 +64,7 @@ clean:
 	rm -rf word_distance_demo
 	rm -rf topic_word_demo
 	rm -rf show_topic_demo
+	rm -rf document_keywords_demo
 	rm -rf build
 	rm -rf python/cpp/*.o
 	rm -rf python/demo/*.so
@@ -82,6 +84,7 @@ OBJS = $(addprefix build/, vose_alias.o inference_engine.o model.o vocab.o docum
 						   demo/query_doc_sim_demo.o \
 						   demo/word_distance_demo.o \
 						   demo/topic_word_demo.o \
+						   demo/document_keywords_demo.o \
 						   demo/show_topic_demo.o)
 
 build/libfamilia.a: include/config.pb.h $(OBJS)
