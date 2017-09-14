@@ -5,7 +5,7 @@
 [![Build Status][image-1]][1]
 [![License][image-2]]()
 
-**Familia** 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。[**ENGLISH**][10]
+**Familia** 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。
 
 ## 应用介绍
 **Familia**目前包含的主题模型的对应论文介绍可以参考[相关论文][3]。
@@ -90,7 +90,6 @@ Familia is provided under the [BSD-3-Clause License][9].
 [7]:	https://github.com/baidu/Familia/issues
 [8]:	https://arxiv.org/pdf/1707.09823.pdf
 [9]:	LICENSE
-[10]:   https://github.com/baidu/Familia/blob/master/README.EN.md
 
 [image-1]:	https://travis-ci.org/baidu/Familia.svg?branch=master
 [image-2]:	https://img.shields.io/pypi/l/Django.svg
