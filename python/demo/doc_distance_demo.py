@@ -25,7 +25,9 @@ if __name__ == '__main__':
         # 输入两个长文本
         doc1 = input("Enter Document1: ").strip()
         doc2 = input("Enter Document2: ").strip()
-        distances = inference_engine_wrapper.cal_doc_distance(doc1, doc2)
+        doc1_seg = inference_engine_wrapper.tokenize(doc1)
+        doc2_seg = inference_engine_wrapper.tokenize(doc2)
+        distances = inference_engine_wrapper.cal_doc_distance(doc1_seg, doc2_seg)
         # 打印结果
         print("Jensen-Shannon Divergence = {}".format(distances[0]))
         print("Hellinger Distance = {}".format(distances[1]))

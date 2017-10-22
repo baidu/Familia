@@ -230,20 +230,18 @@ static PyObject* slda_infer(PyObject* self, PyObject* args) {
 static PyObject* cal_doc_distance(PyObject* self, PyObject* args) {
     UNUSED(self);
     unsigned long infer_ptr = 0;
-    unsigned long tokenizer_ptr = 0;
     char* doc_text1 = NULL;
     char* doc_text2 = NULL;
-    if (!PyArg_ParseTuple(args, "kkss", &infer_ptr, &tokenizer_ptr, &doc_text1, &doc_text2)) {
+    if (!PyArg_ParseTuple(args, "kss", &infer_ptr, &doc_text1, &doc_text2)) {
         LOG(ERROR) << "Failed to parse cal_doc_distance parameters.";
         return NULL;
     }
 
     InferenceEngine* inference_engine = (InferenceEngine*)(infer_ptr);
-    Tokenizer* tokenizer = (Tokenizer*)(tokenizer_ptr);
     vector<string> doc1_tokens;
     vector<string> doc2_tokens;
-    tokenizer->tokenize(doc_text1, doc1_tokens);
-    tokenizer->tokenize(doc_text2, doc2_tokens);
+    split(doc1_tokens, doc_text1, ' ');
+    split(doc2_tokens, doc_text2, ' ');
 
     // 文档主题推断, 输入分词结果，主题推断结果存放于LDADoc中
     LDADoc doc1, doc2;
@@ -282,19 +280,18 @@ static PyObject* cal_query_doc_similarity(PyObject* self, PyObject* args) {
     unsigned long twe_ptr = 0;
     char* query = NULL;
     char* document = NULL;
-    if (!PyArg_ParseTuple(args, "kkkss", &infer_ptr, &tokenizer_ptr, &twe_ptr,
+    if (!PyArg_ParseTuple(args, "kkss", &infer_ptr, &twe_ptr,
                 &query, &document)) {
         LOG(ERROR) << "Failed to parse cal_query_doc_similarity parameters.";
         return NULL;
     }
 
     InferenceEngine* inference_engine = (InferenceEngine*)(infer_ptr);
-    Tokenizer* tokenizer = (Tokenizer*)(tokenizer_ptr);
     TopicalWordEmbedding* twe = (TopicalWordEmbedding*)(twe_ptr);
     vector<string> q_tokens;
     vector<string> doc_tokens;
-    tokenizer->tokenize(query, q_tokens);
-    tokenizer->tokenize(document, doc_tokens);
+    split(q_tokens, query, ' ');
+    split(doc_tokens, document, ' ');
 
     // 对长文本进行主题推断，获取主题分布
     LDADoc doc;
@@ -321,6 +318,95 @@ static PyObject* cal_query_doc_similarity(PyObject* self, PyObject* args) {
     return py_list;
 }
 
+// keywords
+static PyObject* cal_keywords_similarity(PyObject* self, PyObject* args) {
+    UNUSED(self);
+    unsigned long infer_ptr = 0;
+    char* words = NULL;
+    char* document = NULL;
+    if (!PyArg_ParseTuple(args, "kss", &infer_ptr, &words, &document)) {
+        LOG(ERROR) << "Failed to parse cal_query_doc_similarity parameters.";
+        return NULL;
+    }
+
+    InferenceEngine* inference_engine = (InferenceEngine*)(infer_ptr);
+    vector<string> word_tokens;
+    vector<string> doc_tokens;
+    split(word_tokens, words, ' ');
+    split(doc_tokens, document, ' ');
+
+    LDADoc doc;
+    inference_engine->infer(doc_tokens, doc);
+    vector<Topic> doc_topic_dist;
+    doc.sparse_topic_dist(doc_topic_dist);
+
+    vector<WordAndDis> items;
+    for (auto word : word_tokens) {
+        WordAndDis wd;
+        wd.word = word;
+        vector<string> tmp;
+        tmp.push_back(word);
+        wd.distance = SemanticMatching::likelihood_based_similarity(tmp,
+                                                                    doc_topic_dist,
+                                                                    inference_engine->get_model());
+        items.push_back(wd);
+    }
+
+    PyObject* py_list = PyList_New(0);
+    if (py_list != NULL) {
+        for (size_t i = 0; i < items.size(); ++i) {
+             PyObject* item = Py_BuildValue("(sf)", items[i].word.c_str(), items[i].distance);
+             PyList_Append(py_list, item);
+             Py_CLEAR(item);
+        }
+    }
+    return py_list;
+}
+
+//keywords twe similarity
+static PyObject* cal_keywords_twe_similarity(PyObject* self, PyObject* args) {
+    UNUSED(self);
+    unsigned long infer_ptr = 0;
+    unsigned long twe_ptr = 0;
+    char* words = NULL;
+    char* document = NULL;
+    if (!PyArg_ParseTuple(args, "kkss", &infer_ptr, &twe_ptr, &words, &document)) {
+        LOG(ERROR) << "Failed to parse cal_query_doc_similarity parameters.";
+        return NULL;
+    }
+
+    InferenceEngine* inference_engine = (InferenceEngine*)(infer_ptr);
+    TopicalWordEmbedding* twe = (TopicalWordEmbedding*)(twe_ptr);
+    vector<string> word_tokens;
+    vector<string> doc_tokens;
+    split(word_tokens, words, ' ');
+    split(doc_tokens, document, ' ');
+
+    LDADoc doc;
+    inference_engine->infer(doc_tokens, doc);
+    vector<Topic> doc_topic_dist;
+    doc.sparse_topic_dist(doc_topic_dist);
+
+    vector<WordAndDis> items;
+    for (auto word : word_tokens) {
+        WordAndDis wd;
+        wd.word = word;
+        vector<string> tmp;
+        tmp.push_back(word);
+        wd.distance = SemanticMatching::twe_based_similarity(tmp, doc_topic_dist, *twe);
+        items.push_back(wd);
+    }
+
+    PyObject* py_list = PyList_New(0);
+    if (py_list != NULL) {
+        for (size_t i = 0; i < items.size(); ++i) {
+             PyObject* item = Py_BuildValue("(sf)", items[i].word.c_str(), items[i].distance);
+             PyList_Append(py_list, item);
+             Py_CLEAR(item);
+        }
+    }
+    return py_list;
+}
 // 返回与目标词最相关的K个词
 static PyObject* nearest_words(PyObject* self, PyObject* args) {
     UNUSED(self);
@@ -410,6 +496,10 @@ static PyMethodDef Methods[] = {
         METH_VARARGS, "calculate the distance between two documents"},
     {"cal_query_doc_similarity", (PyCFunction)cal_query_doc_similarity,
         METH_VARARGS, "calculate the similarity between short text and long text"},
+    {"cal_keywords_similarity", (PyCFunction)cal_keywords_similarity,
+        METH_VARARGS, "keywords"},
+    {"cal_keywords_twe_similarity", (PyCFunction)cal_keywords_twe_similarity,
+        METH_VARARGS, "keywords"},
     {"nearest_words", (PyCFunction)nearest_words,
         METH_VARARGS, "find the nearest words to the target word"},
     {"nearest_words_around_topic", (PyCFunction)nearest_words_around_topic,
