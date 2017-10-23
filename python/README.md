@@ -1,4 +1,4 @@
-# Familia Python接口
+# Familia Python接口([**English**][1])
 
 ## 代码编译
 第三方依赖除了Familia C++代码所需要的库之外，还需要依赖python，默认使用当前系统python（支持python2和python3），兼容Linux和Mac操作系统。
@@ -21,3 +21,5 @@ TopicalWordEmbeddingsWrapper则提供了与TWE模型相关的接口：
 	- nearest_words_around_topic    # 寻求与目标主题最相关的词
 
 具体使用方法可参照[Demo使用文档](https://github.com/baidu/Familia/wiki/Python-Demo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
+
+[1]:    https://github.com/baidu/Familia/blob/master/python/README.EN.md
