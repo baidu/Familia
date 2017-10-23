@@ -26,7 +26,9 @@ if __name__ == '__main__':
         # 输入短文本和长文本
         query = input("Enter Query: ").strip()
         doc = input("Enter Document: ").strip()
-        distances = inference_engine_wrapper.cal_query_doc_similarity(query, doc)
+        query_seg = inference_engine_wrapper.tokenize(query)
+        doc_seg = inference_engine_wrapper.tokenize(doc)
+        distances = inference_engine_wrapper.cal_query_doc_similarity(query_seg, doc_seg)
         # 打印结果
         print("LDA Similarity = {}".format(distances[0]))
         print("TWE similarity = {}".format(distances[1]))
