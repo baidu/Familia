@@ -8,7 +8,7 @@ The topics given by the topic model contain much redundancy sometimes, and we of
 Details can be found under [Topic Redundancy Reduction Tools] [1]. 
 
 ## Fast Topic Redundancy Reduction
-For large datasets, it can be time-consuming to calculate the similarity between each two topics. We design a fast topic redundancy reduction algorithm based on simhash: it finds out all the similar topics based on simhash, and then merges the similar topics on each topic set. 
+For large datasets, it can be time-consuming to calculate the similarity between each two topics. We design a fast topic redundancy reduction algorithm based on simhash: it finds out all the similar topics, and then merges the similar topics on each topic set. 
 
     $ sh run_topic_model_fastmerge.sh
 
