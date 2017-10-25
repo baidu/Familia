@@ -1,4 +1,4 @@
-## 模型说明
+## 模型说明([**English**][1])
 
 已开放新闻、网页和小说领域主题模型，其他领域的模型会陆续开放。
 
@@ -37,3 +37,5 @@
     * novel_slda.model    # Sentence-LDA模型参数, 存储格式为libSVM格式
     * novel_twe_lda.model # TWE模型参数, 二进制存储, 包括词向量与主题向量
     * vocab_info.txt        # 词表文件, 中文编码采用UTF-8
+
+[1]:    https://github.com/baidu/Familia/blob/master/model/README.EN.md
