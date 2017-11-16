@@ -118,9 +118,41 @@ class InferenceEngineWrapper:
 
 
     def cal_keywords_similarity(self, words, doc):
+        """关键词计算
+
+        使用LDA模型计算候选关键词与文档的相关性
+
+        Args:
+            words: 候选词，用空格隔开
+            doc: 分词后的文档内容
+
+        Returns:
+            返回一个list对象，每个元素为关键词以及其与文档相关性。
+        """
         return familia.cal_keywords_similarity(self._inference_engine,
                                                 words,
                                                 doc)
+
+    def cal_keywords_twe_similarity(self, words, doc):
+        """关键词计算
+
+        使用TWE模型计算候选关键词与文档的相关性
+
+        Args:
+            words: 候选词，用空格隔开
+            doc: 分词后的文档内容
+
+        Returns:
+            返回一个list对象，每个元素为关键词以及其与文档相关性。
+        """
+        # 如果没有加载TWE模型无法进行计算
+        if self._emb_file is None:
+            sys.stderr.write("Need to load Topical Word Embeddings file.\n")
+            return
+        return familia.cal_keywords_twe_similarity(self._inference_engine,
+                                                   self._twe,
+                                                   words,
+                                                   doc)
 
 
     def cal_query_doc_similarity(self, query, doc):

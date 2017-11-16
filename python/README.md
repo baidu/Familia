@@ -14,6 +14,8 @@
 	- slda_infer                    # SentenceLDA主题模型推断
 	- cal_doc_distance              # 计算长文本与长文本之间的距离
 	- cal_query_doc_similarity      # 计算短文本跟长文本之间的相关性
+    - cal_keywords_similarity       # 使用LDA计算关键词与文档的相关性
+    - cal_keywords_twe_similarity   # 使用TWE计算关键词与文档的相关性
 
 TopicalWordEmbeddingsWrapper则提供了与TWE模型相关的接口：
 
