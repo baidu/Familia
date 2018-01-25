@@ -34,3 +34,12 @@ We use the whole dataset of Baidu novel dataset. The vocabulary table includes 2
     * novel_slda.model    # parameters for Sentence-LDA (libSVM format)
     * novel_twe_lda.model # parameters for TWE (binary file, including word embedding and topic embedding)
     * vocab_info.txt        # vocabulary table, Chinese encoded in UTF8
+
+
+### Weibo Topic Model
+
+We use the weibo data set containing more than 100 million weibo status-comment pairs. The vocabulary table includes 175,347 words, and the topic size is 2000 for SentenceLDA(SLDA). The weibo SentenceLDA(SLDA) is stored in model/weibo. 
+
+    * slda.conf     # configuration for Sentence-LDA inference
+    * weibo_slda.model    # parameters for Sentence-LDA (libSVM format)
+    * vocab_info.txt        # vocabulary table, Chinese encoded in UTF8
