@@ -26,7 +26,9 @@ if __name__ == '__main__':
         # 输入两个长文本
         words = input("Enter Keywords: ").strip()
         doc = input("Enter Document: ").strip()
-        items = inference_engine_wrapper.cal_keywords_twe_similarity(words, doc)
+        # 分词
+        seg_list = inference_engine_wrapper.tokenize(doc)
+        items = inference_engine_wrapper.cal_keywords_twe_similarity(words, " ".join(seg_list))
         # 打印结果
         print('----------------------------')
         for item in items:
