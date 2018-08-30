@@ -69,13 +69,13 @@
 
 The following article describes the Familia project and industrial cases powered by topic modeling. It bundles and translates the Chinese documentation of the website. We recommend citing this article as default.
 
-Di Jiang, Zeyu Chen, Rongzhong Lian, Siqi Bao and Chen Li. 2017. [Familia: An Open-Source Toolkit for Industrial Topic Modeling][8]. arXiv preprint arXiv:1707.09823.
-
-	@article{jiang2017familia,
-	  author = {Di Jiang and Zeyu Chen and Rongzhong Lian and Siqi Bao and Chen Li},
-	  title = {{Familia: An Open-Source Toolkit for Industrial Topic Modeling}},
-	  journal = {arXiv preprint arXiv:1707.09823},
-	  year = {2017}
+Di Jiang, Yuanfeng Song, Rongzhong Lian, Siqi Bao, Jinhua Peng, Huang He, Hua Wu. 2018. [Familia: A Configurable Topic Modeling Framework for Industrial Text Engineering][8]. arXiv preprint arXiv:1808.03733.
+	
+	@article{jiang2018familia,
+	  author = {Di Jiang and Yuanfeng Song and Rongzhong Lian and Siqi Bao and Jinhua Peng and Huang He and Hua Wu},
+	  title = {{Familia: A Configurable Topic Modeling Framework for Industrial Text Engineering}},
+	  journal = {arXiv preprint arXiv:1808.03733},
+	  year = {2018}
 	}
 
 ## Copyright and License
