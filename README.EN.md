@@ -81,7 +81,7 @@ Familia is provided under the [BSD-3-Clause License][9].
 [5]:	https://github.com/baidu/Familia/blob/master/model/README.md
 [6]:	https://github.com/baidu/Familia/wiki/Demo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3
 [7]:	https://github.com/baidu/Familia/issues
-[8]:	https://arxiv.org/pdf/1707.09823.pdf
+[8]:	https://arxiv.org/abs/1808.03733v2
 [9]:	LICENSE
 
 [image-1]:	https://travis-ci.org/baidu/Familia.svg?branch=master
