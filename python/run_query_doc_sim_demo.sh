@@ -5,4 +5,4 @@ cd ../model
 sh download_model.sh
 cd ../python
 
-python demo/query_doc_sim_demo.py  ../model/news lda.conf news_twe_lda.model
+python -m demo.query_doc_sim_demo  ../model/news lda.conf news_twe_lda.model

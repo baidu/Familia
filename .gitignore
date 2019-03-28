@@ -9,5 +9,16 @@ build/
 .settings/
 .test_env/
 third_party/
+__pycache__/
 
 *~
+/include/familia/config.pb.h
+/model/*.tar.gz
+/model/news/
+/model/novel/
+/model/webpage/
+/model/weibo/
+*.o
+familia.so
+/src/config.cpp
+*_demo

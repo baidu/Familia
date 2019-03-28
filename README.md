@@ -65,6 +65,23 @@
 欢迎提交任何问题和Bug Report至[Github Issues][7].
 或者发送咨询邮件至{ familia } at baidu.com
 
+## Docker
+
+```
+docker run -d \
+    --name familia \
+    -e MODEL_NAME=news \
+    -p 5000:5000 \
+    orctom/familia
+```
+MODEL_NAME can be one of `news`/`novel`/`webpage`/`webo`
+
+### API
+
+```
+http://localhost:5000/swagger/
+```
+
 ## Citation
 
 The following article describes the Familia project and industrial cases powered by topic modeling. It bundles and translates the Chinese documentation of the website. We recommend citing this article as default.

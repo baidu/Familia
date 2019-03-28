@@ -43,7 +43,7 @@ INCPATH=-I./include/ \
 LDFLAGS_SO = -L$(DEPS_PATH)/lib -L$(PYTHON_PATH)/lib -L./build/ -lfamilia -lprotobuf -lglog -lgflags
 
 .PHONY: all
-all: familia python/demo/familia.so
+all: familia python/familia.so
 	@echo $(SOURCES)
 	@echo $(OBJS)
 	$(CXX) $(CXXFLAGS) $(INCPATH) build/demo/inference_demo.o  $(LDFLAGS_SO) -o inference_demo
@@ -102,7 +102,7 @@ include/config.pb.h src/config.cpp : proto/config.proto
 	mv src/config.pb.h ./include/familia
 	mv src/config.pb.cc ./src/config.cpp
 
-python/demo/familia.so : python/cpp/familia_wrapper.cpp familia
+python/familia.so : python/cpp/familia_wrapper.cpp familia
 	$(CXX) $(INCPATH) $(CXXFLAGS) -c $< -o python/cpp/familia_wrapper.o
 	$(CXX) $(INCPATH) $(CXXFLAGS) -shared python/cpp/familia_wrapper.o $(LDFLAGS_SO) -l$(PYTHON_VERSION) -o $@
 
