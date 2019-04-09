@@ -2,6 +2,7 @@
 import os
 import re
 import traceback
+from collections import defaultdict
 
 from sanic import Sanic
 from sanic.exceptions import NotFound
@@ -28,6 +29,34 @@ emb_file = f"{model_name}_twe_lda.model"
 inference_engine_lda = InferenceEngineWrapper(model_dir, 'lda.conf', emb_file)
 inference_engine_slda = InferenceEngineWrapper(model_dir, 'slda.conf')
 twe = TopicalWordEmbeddingsWrapper(model_dir, emb_file)
+
+
+def read_topic_words_from_file(topic_words_file_name='topic_words.lda.txt'):
+    logger.info(f"reading topic_words from file: {topic_words_file_name}")
+    topic_words = defaultdict(list)
+    file_path = os.path.join(model_dir, topic_words_file_name)
+    if not os.path.exists(file_path):
+        logger.warn(f"topic_words file not found: {file_path}")
+        return topic_words
+    with open(file_path, 'r') as f:
+        line = f.readline()
+        while line:
+            pos = line.find('=')
+            line = line[pos + 2:]
+            topic_id, num = line.strip().split('\t')
+            topic_id, num = int(topic_id), int(num)
+            f.readline()
+            items = list()
+            for i in range(num):
+                data = f.readline()
+                word, score = data.strip().split('\t')
+                items.append([word, float(score)])
+            topic_words[topic_id] = items
+            line = f.readline()
+    return topic_words
+
+
+lda_topic_words = read_topic_words_from_file()
 
 
 def get_param(request, param_name, default_value=None, is_list=False):
@@ -126,7 +155,14 @@ async def api_lda(request):
         words = inference_engine_lda.tokenize(text)
         result = inference_engine_lda.lda_infer(words)
         result = result[:n]
-        result = [{'topic_id': topic_id, 'score': score, 'topic_words': twe.nearest_words_around_topic(topic_id)} for topic_id, score in result]
+        result = [
+            {
+                'topic_id': topic_id,
+                'score': score,
+                'topic_words': twe.nearest_words_around_topic(topic_id),
+                'topic_words_poly': lda_topic_words.get(topic_id),
+            } for topic_id, score in result
+        ]
         return response(data=result)
     except Exception as err:
         traceback.print_exc()
@@ -155,7 +191,14 @@ async def api_slda(request):
         sentences = map(inference_engine_slda.tokenize, sentences)
         result = inference_engine_slda.slda_infer(sentences)
         result = result[:n]
-        result = [{'topic_id': topic_id, 'score': score, 'topic_words': twe.nearest_words_around_topic(topic_id)} for topic_id, score in result]
+        result = [
+            {
+                'topic_id': topic_id,
+                'score': score,
+                'topic_words': twe.nearest_words_around_topic(topic_id),
+                'topic_words_poly': lda_topic_words.get(topic_id)
+            } for topic_id, score in result
+        ]
         return response(data=result)
     except Exception as err:
         logger.error(err, exc_info=True)
