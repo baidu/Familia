@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import multiprocessing
 import os
 import re
 import traceback
@@ -8,7 +9,6 @@ from sanic import Sanic
 from sanic.exceptions import NotFound
 from sanic.log import logger
 from sanic.response import json
-
 from sanic_openapi import swagger_blueprint, doc
 
 from familia_wrapper import InferenceEngineWrapper, TopicalWordEmbeddingsWrapper
@@ -22,6 +22,7 @@ app.config.API_PRODUCES_CONTENT_TYPES = ['application/json']
 RE_BACKSPACES = re.compile("\b+")
 
 model_name = os.environ.get("MODEL_NAME", 'news').lower()
+n_workers = int(os.environ.get('WORKERS', multiprocessing.cpu_count()))
 
 model_dir = f"/familia/model/{model_name}"
 emb_file = f"{model_name}_twe_lda.model"
@@ -310,4 +311,5 @@ async def nearest_words(request):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    logger.info(f"running familia api with {n_workers} workers")
+    app.run(host='0.0.0.0', port=5000, workers=n_workers)
