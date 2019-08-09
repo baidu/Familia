@@ -62,7 +62,7 @@
 
 ## 问题咨询
 
-欢迎提交任何问题和Bug Report至[Github Issues][7].
+欢迎提交任何问题和Bug Report至[Github Issues][7]。
 或者发送咨询邮件至{ familia } at baidu.com
 
 ## Docker
