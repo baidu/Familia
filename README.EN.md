@@ -71,6 +71,8 @@ Di Jiang, Yuanfeng Song, Rongzhong Lian, Siqi Bao, Jinhua Peng, Huang He and Hua
   	  year = {2018}
 	}
 
+Further Reading: [Federated Topic Modeling][11]
+
 ## Copyright and License
 
 Familia is provided under the [BSD-3-Clause License][9].
@@ -83,6 +85,7 @@ Familia is provided under the [BSD-3-Clause License][9].
 [7]:	https://github.com/baidu/Familia/issues
 [8]:	https://arxiv.org/abs/1808.03733v2
 [9]:	LICENSE
+[11]:   http://delivery.acm.org/10.1145/3360000/3357909/p1071-jiang.pdf?ip=52.175.32.36&id=3357909&acc=OPEN&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&__acm__=1573111422_f142b86debe3a3f8447dfc56b7cc7c78
 
 [image-1]:	https://travis-ci.org/baidu/Familia.svg?branch=master
 [image-2]:	https://img.shields.io/pypi/l/Django.svg
