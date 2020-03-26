@@ -32,4 +32,4 @@ if __name__ == '__main__':
         # 打印结果
         print('----------------------------')
         for item in items:
-            print item[0] + '\t' + str(item[1])
+            print(item[0] + '\t' + str(item[1]))
