@@ -7,6 +7,42 @@
 
 **Familia** 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。([**English**][10])
 
+## !!!News
+
+近期，我们在[PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 1.8版本中上线了**Familia**中的LDA模型，根据数据集的不同，区分为lda_news、lda_novel和lda_webpage。
+
+PaddleHub使用起来非常便捷，我们以lda_news的使用来进行例子介绍。
+
+1. 首先，在使用PaddleHub之前，需要先安装PaddlePaddle深度学习框架，更多安装说明请查阅[飞桨快速安装](https://www.paddlepaddle.org.cn/install/quick)。
+2. 安装Paddlehub: `pip install paddlehub`
+3. lda_news模型安装：`hub install lda_news`
+4. 具体使用：
+``` python
+import paddlehub as hub
+
+lda_news = hub.Module(name="lda_news")
+jsd, hd = lda_news.cal_doc_distance(doc_text1="今天的天气如何，适合出去游玩吗", doc_text2="感觉今天的天气不错，可以出去玩一玩了")
+# jsd = 0.003109, hd = 0.0573171
+
+lda_sim = lda_news.cal_query_doc_similarity(query='百度搜索引擎', document='百度是全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。')
+# LDA similarity = 0.06826
+
+results = lda_news.cal_doc_keywords_similarity('百度是全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。')
+# [{'word': '百度', 'similarity': 0.12943492762349573}, 
+#  {'word': '信息', 'similarity': 0.06139783578769882}, 
+#  {'word': '找到', 'similarity': 0.055296603463188265}, 
+#  {'word': '搜索', 'similarity': 0.04270794098349327}, 
+#  {'word': '全球', 'similarity': 0.03773627056367886}, 
+#  {'word': '超过', 'similarity': 0.03478658388202199}, 
+#  {'word': '相关', 'similarity': 0.026295857219683725}, 
+#  {'word': '获取', 'similarity': 0.021313585287833996}, 
+#  {'word': '中文', 'similarity': 0.020187103312009513}, 
+#  {'word': '搜索引擎', 'similarity': 0.007092890537169911}]
+```
+
+更加具体的介绍和使用方法可以看这里：https://www.paddlepaddle.org.cn/hublist?filter=en_category&value=SemanticModel 
+
+
 ## 应用介绍
 **Familia**目前包含的主题模型的对应论文介绍可以参考[相关论文][3]。
 
