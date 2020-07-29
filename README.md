@@ -7,15 +7,18 @@
 
 **Familia** 开源项目包含文档主题推断工具、语义匹配计算工具以及基于工业级语料训练的三种主题模型：Latent Dirichlet Allocation(LDA)、SentenceLDA 和Topical Word Embedding(TWE)。 支持用户以“拿来即用”的方式进行文本分类、文本聚类、个性化推荐等多种场景的调研和应用。考虑到主题模型训练成本较高以及开源主题模型资源有限的现状，我们会陆续开放基于工业级语料训练的多个垂直领域的主题模型，以及这些模型在工业界的典型应用方式，助力主题模型技术的科研和落地。([**English**][10])
 
-## !!!News
+## News!!!
 
 近期，我们在[PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 1.8版本中上线了**Familia**中的LDA模型，根据数据集的不同，区分为lda_news、lda_novel和lda_webpage。
 
 PaddleHub使用起来非常便捷，我们以lda_news的使用来进行例子介绍。
 
 1. 首先，在使用PaddleHub之前，需要先安装PaddlePaddle深度学习框架，更多安装说明请查阅[飞桨快速安装](https://www.paddlepaddle.org.cn/install/quick)。
+
 2. 安装Paddlehub: `pip install paddlehub`
+
 3. lda_news模型安装：`hub install lda_news`
+
 4. 具体使用：
 ``` python
 import paddlehub as hub

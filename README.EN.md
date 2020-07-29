@@ -7,6 +7,43 @@
 
 **Familia** is an open-source project, which implements three popular topic models based on the large-scale industrial data. They are Latent Dirichlet Allocation(LDA)、SentenceLDA and Topical Word Embedding(TWE). In addition, **Familia** offers several tools including lda-infer and lda-query-doc-sim. **Familia** could be easily applied to many tasks, such as document classification, document clustering and personalized recommendation. Due to the high cost of model training, we will continue to release well-trained topic models based on the various types of large-scale data.  
 
+## News!!!
+Recently, we launched the Familia's LDA model in [PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 1.8 version. According to different datasets, we launched totally three LDA models: lda_news, lda_novel, lda_webpage.
+
+PaddleHub is very convenient to use. Let's use lda_news as an example.
+
+1. First, before using PaddleHub, you need to install the PaddlePaddle deep learning framework. For more installation instructions, please refer to [Flying Paddle Quick Installation] (https://www.paddlepaddle.org.cn/install/quick).
+
+2. Install Paddlehub: `pip install paddlehub`
+
+3. lda_news model installation: `hub install lda_news`
+
+4. API usage
+``` python
+import paddlehub as hub
+
+lda_news = hub.Module(name="lda_news")
+jsd, hd = lda_news.cal_doc_distance(doc_text1="今天的天气如何，适合出去游玩吗", doc_text2="感觉今天的天气不错，可以出去玩一玩了")
+# jsd = 0.003109, hd = 0.0573171
+
+lda_sim = lda_news.cal_query_doc_similarity(query='百度搜索引擎', document='百度是全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。')
+# LDA similarity = 0.06826
+
+results = lda_news.cal_doc_keywords_similarity('百度是全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果。')
+# [{'word': '百度', 'similarity': 0.12943492762349573}, 
+#  {'word': '信息', 'similarity': 0.06139783578769882}, 
+#  {'word': '找到', 'similarity': 0.055296603463188265}, 
+#  {'word': '搜索', 'similarity': 0.04270794098349327}, 
+#  {'word': '全球', 'similarity': 0.03773627056367886}, 
+#  {'word': '超过', 'similarity': 0.03478658388202199}, 
+#  {'word': '相关', 'similarity': 0.026295857219683725}, 
+#  {'word': '获取', 'similarity': 0.021313585287833996}, 
+#  {'word': '中文', 'similarity': 0.020187103312009513}, 
+#  {'word': '搜索引擎', 'similarity': 0.007092890537169911}]
+```
+More detailed introduction and usage can be found here: https://www.paddlepaddle.org.cn/hublist?filter=en_category&value=SemanticModel
+
+
 ## Introduction
 The details of topic models implemented by **Familia** can be referred to [papers on topic models][3].
 
