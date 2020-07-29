@@ -8,11 +8,11 @@
 **Familia** is an open-source project, which implements three popular topic models based on the large-scale industrial data. They are Latent Dirichlet Allocation(LDA)、SentenceLDA and Topical Word Embedding(TWE). In addition, **Familia** offers several tools including lda-infer and lda-query-doc-sim. **Familia** could be easily applied to many tasks, such as document classification, document clustering and personalized recommendation. Due to the high cost of model training, we will continue to release well-trained topic models based on the various types of large-scale data.  
 
 ## News!!!
-Recently, we launched the Familia's LDA model in [PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 1.8 version. According to different datasets, we launched totally three LDA models: lda_news, lda_novel, lda_webpage.
+Recently, we launched the Familia's LDA model in [PaddleHub](https://github.com/PaddlePaddle/PaddleHub) 1.8 version. According to different datasets, we launched three LDA models: lda_news, lda_novel, lda_webpage.
 
 PaddleHub is very convenient to use. Let's use lda_news as an example.
 
-1. First, before using PaddleHub, you need to install the PaddlePaddle deep learning framework. For more installation instructions, please refer to [Flying Paddle Quick Installation] (https://www.paddlepaddle.org.cn/install/quick).
+1. First, before using PaddleHub, you need to install the PaddlePaddle deep learning framework. For more installation instructions, please refer to [PaddlePaddle Quick Installation] (https://www.paddlepaddle.org.cn/install/quick).
 
 2. Install Paddlehub: `pip install paddlehub`
 
