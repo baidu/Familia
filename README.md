@@ -62,7 +62,7 @@ results = lda_news.cal_doc_keywords_similarity('百度是全球最大的中文�
 	- 长文本-长文本相似度计算，使用场景包括计算两篇文档的相似度、计算用户画像和新闻的相似度等等。
 
 更详细的内容及工业界应用案例可以参考[**Familia Wiki**][4] ，
-如果想要对上述应用范式进行基于Web的可视化展示，可以参考[**Familia-Visualization**][12]
+如果想要对上述应用范式进行基于Web的可视化展示，可以参考[**Familia-Visualization**][12]。
 
 ## 代码编译
 第三方依赖包括`gflags-2.0`，`glogs-0.3.4`，`protobuf-2.5.0`, 同时要求编译器支持C++11, `g++ >= 4.8`, 兼容Linux和Mac操作系统。
